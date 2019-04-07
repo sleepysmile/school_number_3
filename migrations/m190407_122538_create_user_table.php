@@ -18,6 +18,8 @@ class m190407_122538_create_user_table extends Migration
             'password' => $this->string()->comment('passwords user'),
             'email' => $this->string()->comment('E-mail users'),
             'status' => $this->integer()->comment('status users'),
+            'password_reset_token' => $this->string()->unique(),
+            'auth_key' => $this->string()->unique(),
             'created_at' => $this->string(),
             'updated_at' => $this->string(),
             'access_token' => $this->string(),
