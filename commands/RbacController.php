@@ -8,7 +8,6 @@ use yii\console\Controller;
 class RbacController extends Controller
 {
     /**
-     * @throws \yii\base\Exception
      * @throws \Exception
      */
     public function actionInit()

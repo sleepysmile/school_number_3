@@ -11,11 +11,44 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+            'as access' => [
+                'class' => 'yii\filters\AccessControl',
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin']
+                    ],
+                ]
+            ],
+        ],
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'CZIAYQaOeaXT1VHbIJhZBB4ObbMJyjIQ',
 //            'baseUrl' => ''
+        ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'basePath' => '@webroot/bootstrap/',
+                    'css' => [
+                        'css/bootstrap.css',
+                        'css/bootstrap-grid.css',
+                        'css/bootstrap-reboot.css',
+                    ],
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'basePath' => '@webroot/bootstrap/',
+                    'js' => [
+                        'js/bootstrap.bundle.js',
+                        'js/bootstrap.js',
+                    ]
+                ],
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
