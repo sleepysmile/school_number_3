@@ -5,6 +5,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use zxbodya\yii2\imageAttachment\ImageAttachmentBehavior;
 
 /**
  * User model
@@ -42,7 +43,41 @@ class User extends ActiveRecord implements IdentityInterface
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            TimestampBehavior::class,
+            'coverBehavior' => [
+                'class' => ImageAttachmentBehavior::class,
+                // type name for model
+                'type' => 'user',
+                // image dimmentions for preview in widget
+                'previewHeight' => 200,
+                'previewWidth' => 300,
+                // extension for images saving
+                'extension' => 'jpg',
+                // path to location where to save images
+                'directory' => Yii::getAlias('@webroot') . '/images/post/cover',
+                'url' => Yii::getAlias('@web') . '/images/post/cover',
+                // additional image versions
+                'versions' => [
+                    'small' => function ($img) {
+                        /** @var ImageInterface $img */
+                        return $img
+                            ->copy()
+                            ->resize($img->getSize()->widen(200));
+                    },
+                    'medium' => function ($img) {
+                        /** @var ImageInterface $img */
+                        $dstSize = $img->getSize();
+                        $maxWidth = 800;
+                        if ($dstSize->getWidth() > $maxWidth) {
+                            $dstSize = $dstSize->widen($maxWidth);
+                        }
+                        return [
+                            $img->copy()->resize($dstSize),
+                            ['jpeg_quality' => 80], // options used when saving image (Imagine::save)
+                        ];
+                    },
+                ]
+            ]
         ];
     }
     /**

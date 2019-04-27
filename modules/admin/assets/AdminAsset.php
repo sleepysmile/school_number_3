@@ -9,10 +9,10 @@ class AdminAsset extends AssetBundle
     public $sourcePath = '@vendor/';
 
     public $css = [
-        '/datatables/dataTables.bootstrap.css',
+        'datatables/dataTables.bootstrap.css',
     ];
     public $js = [
-        '/datatables/dataTables.bootstrap.min.js',
+        'datatables/dataTables.bootstrap.min.js',
     ];
 
     public $jsOptions = [
@@ -24,9 +24,9 @@ class AdminAsset extends AssetBundle
     ];
 
     public $depends = [
-        '\dmstr\web\AdminLteAsset',
-        '\yii\web\YiiAsset',
-        '\yii\bootstrap\BootstrapAsset',
-        '\yii\bootstrap\BootstrapPluginAsset',
+        'dmstr\web\AdminLteAsset',
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
     ];
 }

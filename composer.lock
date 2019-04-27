@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9cde282dd946986e67b81da9f12d5054",
+    "content-hash": "8e03a6b8a9672168af2ba2194e6456a1",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1445,6 +1445,50 @@
                 "yii2"
             ],
             "time": "2018-11-19T19:59:10+00:00"
+        },
+        {
+            "name": "zxbodya/yii2-image-attachment",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zxbodya/yii2-image-attachment.git",
+                "reference": "df30852a67ab5a4750c81517e2b82f20d3e84337"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zxbodya/yii2-image-attachment/zipball/df30852a67ab5a4750c81517e2b82f20d3e84337",
+                "reference": "df30852a67ab5a4750c81517e2b82f20d3e84337",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2-imagine": "*",
+                "yiisoft/yii2-jui": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "zxbodya\\yii2\\imageAttachment\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bogdan Savluk",
+                    "email": "savluk.bogdan@gmail.com"
+                }
+            ],
+            "description": "Extension for yii, to handle images attached to ActiveRecord",
+            "keywords": [
+                "Active Record",
+                "Behavior",
+                "extension",
+                "image",
+                "yii2"
+            ],
+            "time": "2015-12-13T02:19:38+00:00"
         }
     ],
     "packages-dev": [
@@ -4115,7 +4159,8 @@
     "stability-flags": {
         "usualdesigner/yii2-hitable-behavior": 20,
         "asofter/yii2-imperavi-redactor": 20,
-        "zxbodya/yii2-gallery-manager": 20
+        "zxbodya/yii2-gallery-manager": 20,
+        "zxbodya/yii2-image-attachment": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
