@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -18,7 +18,7 @@ class NewsSearch extends News
     {
         return [
             [['id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'hit'], 'integer'],
-            [['image_path', 'image_path_url', 'title', 'text', 'annotation', 'date'], 'safe'],
+            [['title', 'text', 'annotation', 'date'], 'safe'],
         ];
     }
 
@@ -67,8 +67,7 @@ class NewsSearch extends News
             'hit' => $this->hit,
         ]);
 
-        $query->andFilterWhere(['like', 'image_path', $this->image_path])
-            ->andFilterWhere(['like', 'image_path_url', $this->image_path_url])
+        $query
             ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'text', $this->text])
             ->andFilterWhere(['like', 'annotation', $this->annotation]);
