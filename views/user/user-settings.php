@@ -24,7 +24,7 @@ use zxbodya\yii2\imageAttachment\ImageAttachmentWidget;
 
 <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
-<?= \yii\helpers\Html::submitButton('Сохранить изменеия') ?>
+<?= \yii\helpers\Html::submitButton('Сохранить изменеия', ['class' => 'btn btn-success']) ?>
 
 <?php ActiveForm::end() ?>
 
