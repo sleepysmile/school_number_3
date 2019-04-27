@@ -6,6 +6,7 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'layout' => 'main',
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -14,6 +15,8 @@ $config = [
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
+            'controllerNamespace' => 'app\modules\admin\controllers',
+            'layout' => 'base',
             'as access' => [
                 'class' => 'yii\filters\AccessControl',
                 'rules' => [
@@ -21,7 +24,10 @@ $config = [
                         'allow' => true,
                         'roles' => ['admin']
                     ],
-                ]
+                ],
+                'denyCallback' => function ($rule, $action) {
+                    throw new \Exception('У вас нет доступа к этой странице');
+                },
             ],
         ],
     ],
@@ -49,6 +55,16 @@ $config = [
                     ]
                 ],
             ],
+        ],
+        'yii2images' => [
+            'class' => 'rico\yii2images\Module',
+            //be sure, that permissions ok
+            //if you cant avoid permission errors you have to create "images" folder in web root manually and set 777 permissions
+            'imagesStorePath' => 'upload/store', //path to origin images
+            'imagesCachePath' => 'upload/cache', //path to resized copies
+            'graphicsLibrary' => 'GD', //but really its better to use 'Imagick'
+            'placeHolderPath' => null, // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
+            'imageCompressionQuality' => 100, // Optional. Default value is 85.
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
