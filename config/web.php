@@ -1,5 +1,7 @@
 <?php
 
+use yii\filters\AccessControl;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -27,6 +29,9 @@ $config = [
                 ],
             ],
         ],
+        'comment' => [
+            'class' => 'yii2mod\comments\Module',
+        ],
     ],
     'components' => [
         'request' => [
@@ -53,15 +58,13 @@ $config = [
                 ],
             ],
         ],
-        'yii2images' => [
-            'class' => 'rico\yii2images\Module',
-            //be sure, that permissions ok
-            //if you cant avoid permission errors you have to create "images" folder in web root manually and set 777 permissions
-            'imagesStorePath' => 'upload/store', //path to origin images
-            'imagesCachePath' => 'upload/cache', //path to resized copies
-            'graphicsLibrary' => 'GD', //but really its better to use 'Imagick'
-            'placeHolderPath' => null, // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
-            'imageCompressionQuality' => 100, // Optional. Default value is 85.
+        'i18n' => [
+            'translations' => [
+                'yii2mod.comments' => [
+                    'class' => yii\i18n\PhpMessageSource::class,
+                    'basePath' => '@yii2mod/comments/messages',
+                ],
+            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

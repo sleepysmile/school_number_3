@@ -16,7 +16,7 @@ class NewsController extends Controller
 {
     public function actionView(string $slug)
     {
-        $oneNews = News::findOne(['slug' => $slug]);
+        $oneNews = News::find()->publication()->where(['slug' => $slug])->one();
 
         return $this->render('view', [
             'model' => $oneNews

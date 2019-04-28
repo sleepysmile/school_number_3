@@ -30,6 +30,8 @@ $this->title = 'Школа №3';
                         <div class="fh5co-card-body">
                             <h3><?php echo $oneNews->title ?></h3>
                             <p><?php echo $oneNews->annotation ?></p>
+                            <p style="text-align: end"><?php echo $oneNews->date ?></p>
+                            <p style="text-align: end"><?php echo $oneNews->createdBy->username ?></p>
                         </div>
                     </a>
                 </div>

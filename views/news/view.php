@@ -2,6 +2,8 @@
 
 /** @var $model /app/model/News */
 
+use yii2mod\comments\widgets\Comment;
+
 ?>
 
 <section class="latest section">
@@ -27,3 +29,11 @@
         </div><!--//content-->
     </div><!--//section-inner-->
 </section>
+
+<?php try {
+    echo Comment::widget([
+        'model' => $model,
+    ]);
+} catch (Exception $e) {
+    var_dump($e->getMessage());
+} ?>
