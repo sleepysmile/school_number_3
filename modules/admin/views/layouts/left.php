@@ -9,7 +9,7 @@ use yii\widgets\Menu;
     <section class="sidebar">
 
         <!-- Sidebar user panel -->
-        <div class="user-panel">
+        <div class="user-panel" style="position: initial">
             <div class="pull-left image">
                 <img src="<?= Yii::$app->user->identity->getBehavior('coverBehavior')->getUrl('medium'); ?>" class="img-circle" alt="User Image"/>
             </div>

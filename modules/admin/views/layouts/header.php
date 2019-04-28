@@ -39,7 +39,7 @@ use yii\helpers\Html;
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="<?= \yii\helpers\Url::to(['default/user-settrings']) ?>" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
                                 <?= Html::a(

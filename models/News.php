@@ -2,9 +2,12 @@
 
 namespace app\models;
 
+use app\behaviors\DateTimeFormatBehavior;
 use app\models\query\NewsQuery;
+use usualdesigner\yii2\behavior\HitableBehavior;
 use Yii;
 use yii\behaviors\BlameableBehavior;
+use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use zxbodya\yii2\galleryManager\GalleryBehavior;
 
@@ -26,6 +29,8 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  *
  * @property User $createdBy
  * @property User $updatedBy
+ * @property string $slug [varchar(255)]
+ * @property bool $publication [tinyint(1)]
  */
 class News extends \yii\db\ActiveRecord
 {
@@ -67,7 +72,23 @@ class News extends \yii\db\ActiveRecord
                             ->resize($dstSize);
                     },
                 ]
-            ]
+            ],
+            'hit' => [
+                'class' => HitableBehavior::class,
+                'attribute' => 'hit',    //attribute which should contain uniquie hits value
+                'group' => false,               //group name of the model (class name by default)
+                'delay' => 60 * 60,             //register the same visitor every hour
+                'table_name' => '{{%hits}}'     //table with hits data
+            ],
+            'slug' => [
+                'class' => SluggableBehavior::class,
+                'attribute' => 'title'
+            ],
+            [
+            'class' => DateTimeFormatBehavior::class,
+                'dateTime' => ['date'],
+            ],
+
         ];
     }
 
@@ -80,6 +101,8 @@ class News extends \yii\db\ActiveRecord
             [['text'], 'string'],
             [['date'], 'safe'],
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'hit'], 'integer'],
+            [['publication'], 'boolean'],
+            [['hit'], 'default', 'value' => 0],
             [['title', 'annotation'], 'string', 'max' => 255],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['updated_by' => 'id']],
@@ -92,18 +115,11 @@ class News extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'image' => Yii::t('app', 'Фото'),
             'gallery' => Yii::t('app', 'Галерея'),
             'title' => Yii::t('app', 'Title'),
             'text' => Yii::t('app', 'Text'),
             'annotation' => Yii::t('app', 'Annotation'),
             'date' => Yii::t('app', 'Date'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'created_by' => Yii::t('app', 'Created By'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'updated_by' => Yii::t('app', 'Updated By'),
-            'hit' => Yii::t('app', 'Hit'),
         ];
     }
 

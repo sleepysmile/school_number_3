@@ -25,9 +25,6 @@ $config = [
                         'roles' => ['admin']
                     ],
                 ],
-                'denyCallback' => function ($rule, $action) {
-                    throw new \Exception('У вас нет доступа к этой странице');
-                },
             ],
         ],
     ],

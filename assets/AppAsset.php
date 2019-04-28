@@ -20,10 +20,20 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css'
+        'css/site.css',
+//        'css/animate.css',
+//        'css/easy-responsive-tabs.css',
+//        'css/magnific-popup.css',
+//        'css/megafish.css',
+//        'css/menu_slideside.css',
+//        'css/owl.carousel.min.css',
+//        'css/owl.theme.default.min.css',
+        'css/style.css',
+//        'css/superfish.css',
+//        'css/themify-icons.css',
     ];
     public $js = [
-
+        'js/custom.js'
     ];
 
     public $depends = [

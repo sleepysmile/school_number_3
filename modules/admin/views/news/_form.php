@@ -30,17 +30,14 @@ use zxbodya\yii2\galleryManager\GalleryManager;
 
     <?= $form->field($model, 'annotation')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'date')->textInput() ?>
+    <?= $form->field($model, 'date')->widget(
+        \trntv\yii\datetime\DateTimeWidget::class,
+        [
+            'momentDatetimeFormat' => 'DD.MM.YYYY HH:mm:ss',
+        ])
+     ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
-
-    <?= $form->field($model, 'hit')->textInput() ?>
+    <?= $form->field($model, 'publication')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

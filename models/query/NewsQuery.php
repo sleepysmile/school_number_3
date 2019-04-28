@@ -9,10 +9,10 @@ namespace app\models\query;
  */
 class NewsQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+    public function publication()
     {
-        return $this->andWhere('[[status]]=1');
-    }*/
+        return $this->andWhere(['publication' => true]);
+    }
 
     /**
      * {@inheritdoc}

@@ -10,6 +10,7 @@ class AdminAsset extends AssetBundle
 
     public $css = [
         'datatables/dataTables.bootstrap.css',
+        'css/site.css'
     ];
     public $js = [
         'datatables/dataTables.bootstrap.min.js',

@@ -121,3 +121,6 @@ a.desc:after {
     outline: none;
 }
 
+.fh5co-card > img {
+    height: 150px;
+}
