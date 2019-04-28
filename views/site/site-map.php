@@ -12,9 +12,6 @@ use yii\helpers\Html;
         <a href="<?= \yii\helpers\Url::to(['#']) ?>">Сведения об образовательной организации</a>
     </li>
     <li>
-        <a href="<?= \yii\helpers\Url::to(['#']) ?>">Аттестация педагогических работников</a>
-    </li>
-    <li>
         <a href="<?= \yii\helpers\Url::to(['#']) ?>">Символика школы</a>
     </li>
     <li>
