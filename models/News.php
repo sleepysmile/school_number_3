@@ -116,10 +116,11 @@ class News extends \yii\db\ActiveRecord
     {
         return [
             'gallery' => Yii::t('app', 'Галерея'),
-            'title' => Yii::t('app', 'Title'),
-            'text' => Yii::t('app', 'Text'),
-            'annotation' => Yii::t('app', 'Annotation'),
-            'date' => Yii::t('app', 'Date'),
+            'title' => Yii::t('app', 'Заголовок'),
+            'text' => Yii::t('app', 'Текст новости'),
+            'annotation' => Yii::t('app', 'Аннотация'),
+            'date' => Yii::t('app', 'Дата'),
+            'publication' => Yii::t('app', 'Публикация'),
         ];
     }
 

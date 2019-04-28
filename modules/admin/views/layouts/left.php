@@ -42,8 +42,16 @@ use yii\widgets\Menu;
                         ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'], 'visible' => YII_ENV_DEV],
                         ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                         [
-                            'label' => 'News',
+                            'label' => 'Новости',
                             'url' => ['news/index'],
+                        ],
+                        [
+                            'label' => 'Дисциплины',
+                            'url' => ['disciplines/index'],
+                        ],
+                        [
+                            'label' => 'Учителя',
+                            'url' => ['teacher/index'],
                         ],
                     ],
                 ]

@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\NewsSearch */
+/* @var $searchModel app\models\search\TeacherSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Новости');
+$this->title = Yii::t('app', 'Учителя');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="news-index">
+<div class="teacher-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Создать новость'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Создать учителя'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -28,8 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'title',
-            'text:ntext',
+            'name',
+            'info:ntext',
+            'education:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

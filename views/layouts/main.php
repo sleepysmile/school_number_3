@@ -64,6 +64,7 @@ AppAsset::register($this);
                         ['label' => 'Отчет о результатах самообследования', 'url' => ['/#']],
                     ],
                 ],
+                ['label' => 'Преподовательский состав', 'url' => ['/site/contact']],
                 ['label' => 'Контакты', 'url' => ['/site/contact']],
                 ['label' => 'Настройки аккаунта', 'url' => ['user/user-settings'], 'visible' => !Yii::$app->user->isGuest],
                 Yii::$app->user->isGuest ? (
