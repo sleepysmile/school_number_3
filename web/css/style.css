@@ -25,9 +25,7 @@ html.fh5co-overflow #fh5co-header-section, html.fh5co-overflow #fh5co-main, html
 }
 
 body {
-  font-size: 18px;
   line-height: 1.9;
-  font-weight: 300;
   background: whitesmoke;
 }
 @media screen and (max-width: 768px) {
@@ -1873,5 +1871,33 @@ a > img.fh5co-align-center {
 .featured-image img {
   height: 150px;
 }
+
+.teacher-name {
+  display: flex;
+  margin-top: 50px;
+}
+
+.teacher-name h2 {
+  width: 50%;
+  text-align: center;
+}
+
+.info-teacher {
+  margin-top: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-info-teacher {
+  word-wrap: break-word;
+  word-break: break-all;
+  width: 350px;
+}
+
+.top-margin {
+  margin-top: 25px;
+}
+
 
 /*# sourceMappingURL=style.css.map */

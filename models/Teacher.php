@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
 use zxbodya\yii2\imageAttachment\ImageAttachmentBehavior;
 
 /**
@@ -66,6 +67,10 @@ class Teacher extends \yii\db\ActiveRecord
                 'relations' => [
                     'allDisciplines' => 'disciplines'
                 ],
+            ],
+            'slug' => [
+                'class' => SluggableBehavior::class,
+                'attribute' => 'name'
             ],
         ];
     }

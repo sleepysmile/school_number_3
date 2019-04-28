@@ -64,7 +64,7 @@ AppAsset::register($this);
                         ['label' => 'Отчет о результатах самообследования', 'url' => ['/#']],
                     ],
                 ],
-                ['label' => 'Преподовательский состав', 'url' => ['/site/contact']],
+                ['label' => 'Преподовательский состав', 'url' => ['/teacher/index']],
                 ['label' => 'Контакты', 'url' => ['/site/contact']],
                 ['label' => 'Настройки аккаунта', 'url' => ['user/user-settings'], 'visible' => !Yii::$app->user->isGuest],
                 Yii::$app->user->isGuest ? (
@@ -97,9 +97,8 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left"><?= Yii::powered() ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
 
