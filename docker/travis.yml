@@ -1,35 +1,30 @@
-version: '2'
+version: "3"
 
 services:
   app:
-    build: docker/php
+    build: php
+    working_dir: /app
     volumes:
-      - ./:/web
+      - ../:/app
     depends_on:
       - db
-    env_file:
-      - .env
 
   nginx:
     image: nginx:1.12-alpine
     ports:
       - 80:80
     volumes:
-      - ./:/web
-      - ./docker/nginx/vhost.conf:/etc/nginx/conf.d/vhost.conf
+      - ../:/app
+      - ./nginx/vhost.conf:/etc/nginx/conf.d/vhost.conf
     depends_on:
       - app
 
   db:
-    image: mysql:5.7
+    image: mysql:8
     volumes:
-      - /var/lib/mysql
-      - ./docker/mysql/config.cnf:/etc/mysql/conf.d/config.cnf
-    ports:
-      - 3306:3306
+      - ./mysql/config.cnf:/etc/mysql/conf.d/config.cnf
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: school_number_3
       MYSQL_USER: root
       MYSQL_PASSWORD:
-
