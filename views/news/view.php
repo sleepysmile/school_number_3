@@ -9,6 +9,7 @@ use yii2mod\comments\widgets\Comment;
 <section class="latest section">
     <div class="section-inner">
         <h2 class="heading"><?php echo $model->title ?></h2>
+        <p><?php echo $model->hit ?></p>
         <div class="content">
 
             <div class="item featured text-center">
@@ -35,5 +36,4 @@ use yii2mod\comments\widgets\Comment;
         'model' => $model,
     ]);
 } catch (Exception $e) {
-    var_dump($e->getMessage());
 } ?>

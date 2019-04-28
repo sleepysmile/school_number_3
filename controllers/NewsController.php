@@ -17,6 +17,7 @@ class NewsController extends Controller
     public function actionView(string $slug)
     {
         $oneNews = News::find()->publication()->where(['slug' => $slug])->one();
+        $oneNews->getBehavior('hit')->touch();
 
         return $this->render('view', [
             'model' => $oneNews
