@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\News;
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
 use app\models\SignupForm;
@@ -66,7 +67,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('index', [
+            'news' => News::find()->publication()->orderBy('date DESC')->all()
+        ]);
     }
 
     /**
@@ -197,4 +200,10 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionSiteMap()
+    {
+        return $this->render('site-map');
+    }
+    
 }

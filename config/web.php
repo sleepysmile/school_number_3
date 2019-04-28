@@ -1,11 +1,14 @@
 <?php
 
+use yii\filters\AccessControl;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'layout' => 'main',
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -14,6 +17,8 @@ $config = [
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
+            'controllerNamespace' => 'app\modules\admin\controllers',
+            'layout' => 'base',
             'as access' => [
                 'class' => 'yii\filters\AccessControl',
                 'rules' => [
@@ -21,8 +26,11 @@ $config = [
                         'allow' => true,
                         'roles' => ['admin']
                     ],
-                ]
+                ],
             ],
+        ],
+        'comment' => [
+            'class' => 'yii2mod\comments\Module',
         ],
     ],
     'components' => [
@@ -49,6 +57,14 @@ $config = [
                     ]
                 ],
             ],
+        ],
+        'i18n' => [
+            'translations' => [
+                'yii2mod.comments' => [
+                    'class' => yii\i18n\PhpMessageSource::class,
+                    'basePath' => '@yii2mod/comments/messages',
+                ],
+            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

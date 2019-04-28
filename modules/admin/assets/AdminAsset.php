@@ -1,19 +1,19 @@
 <?php
 
-namespace app\modules\admin\assets;
+namespace app\assets;
 
 use yii\web\AssetBundle;
 
 class AdminAsset extends AssetBundle
 {
+    public $sourcePath = '@vendor/';
+
     public $css = [
-        'css/bootstrap.min.css',
-        'css/demo.css',
-        'css/ready.css',
+        'datatables/dataTables.bootstrap.css',
+        'css/site.css'
     ];
     public $js = [
-        'js/demo.css',
-        'js/ready.css',
+        'datatables/dataTables.bootstrap.min.js',
     ];
 
     public $jsOptions = [
@@ -22,5 +22,12 @@ class AdminAsset extends AssetBundle
 
     public $cssOptions = [
         'position' => \yii\web\View::POS_HEAD
+    ];
+
+    public $depends = [
+        'dmstr\web\AdminLteAsset',
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
     ];
 }

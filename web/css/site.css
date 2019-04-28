@@ -120,3 +120,7 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.fh5co-card > img {
+    height: 150px;
+}

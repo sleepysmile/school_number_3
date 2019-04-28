@@ -14,16 +14,25 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "php": ">=5.4.0",
+        "php": "^7.2",
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap": "~2.0.0",
-        "yiisoft/yii2-swiftmailer": "~2.1.0"
+        "yiisoft/yii2-swiftmailer": "~2.1.0",
+        "dmstr/yii2-adminlte-asset": "^2.1",
+        "usualdesigner/yii2-hitable-behavior": "dev-master",
+        "asofter/yii2-imperavi-redactor": ">=0.0.3@dev",
+        "zxbodya/yii2-gallery-manager": "*@dev",
+        "zxbodya/yii2-image-attachment": "*@dev",
+        "trntv/yii2-datetime-widget": "*",
+        "yii2tech/ar-softdelete": "*",
+        "kartik-v/yii2-widget-select2": "@dev",
+        "voskobovich/yii2-many-many-behavior": "^3.0",
+        "yii2mod/yii2-comments": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
         "yiisoft/yii2-gii": "~2.1.0",
         "yiisoft/yii2-faker": "~2.0.0",
-
         "codeception/base": "~2.3.0",
         "codeception/verify": "~0.4.0",
         "codeception/specify": "~0.4.6",

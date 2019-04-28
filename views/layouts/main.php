@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => 'МБОУ гимназия №3',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -37,13 +37,12 @@ AppAsset::register($this);
     ]);
     try {
         echo Nav::widget([
-            'options' => ['class' => '   navbar-nav navbar-right'],
+            'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
                 [
                     'label' => 'Сведенья о школе',
                     'items' => [
-                        ['label' => 'Сведения об образовательной организации', 'url' => ['/#']],
-                        ['label' => 'Аттестация педагогических работников', 'url' => ['/#']],
+                        ['label' => 'Сведения об образовательной организации', 'url' => ['/about/index']],
                         ['label' => 'Символика школы', 'url' => ['/#']],
                         ['label' => 'Новости', 'url' => ['/#']],
                         ['label' => 'Прием в ОО', 'url' => ['/#']],
@@ -55,7 +54,7 @@ AppAsset::register($this);
                         ['label' => 'Воспитательная работа', 'url' => ['/#']],
                         ['label' => 'Государственная итоговая аттестация (ГИА)', 'url' => ['/#']],
                         ['label' => 'Центр профориентацинной работы', 'url' => ['/#']],
-                        ['label' => 'Электронный журнал', 'url' => ['/#']],
+                        ['label' => 'Электронный журнал', 'url' => 'https://krd.rso23.ru/'],
                         ['label' => 'Информационная безопасность', 'url' => ['/#']],
                         ['label' => 'Наш профсоюз', 'url' => ['/#']],
                         ['label' => 'Карта сайта', 'url' => ['/#']],
@@ -64,7 +63,11 @@ AppAsset::register($this);
                         ['label' => 'Отчет о результатах самообследования', 'url' => ['/#']],
                     ],
                 ],
+                ['label' => 'Преподовательский состав', 'url' => ['/teacher/index']],
                 ['label' => 'Контакты', 'url' => ['/site/contact']],
+                ['label' => 'Настройки аккаунта', 'url' => ['user/user-settings'], 'visible' => !Yii::$app->user->isGuest],
+                ['label' => 'Карта сайта', 'url' => ['site/site-map']],
+                ['label' => 'Регистрация', 'url' => ['/site/signup']],
                 Yii::$app->user->isGuest ? (
                 ['label' => 'Вход', 'url' => ['/site/login']]
                 ) : (
@@ -95,9 +98,24 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <div class="pull-left">
+            <div>
+                График работы:
+                <ul>
+                    <li>понедельник - с 9-00 до 18-00</li>
+                    <li>вторник - с 9-00 до 18-00</li>
+                    <li>среда - с 9-00 до 18-00</li>
+                    <li>четверг - с 9-00 до 18-00</li>
+                    <li>пятница - с 9-00 до 17-00</li>
+                </ul>
+                <a href="tel:255-93-91">Тел: 255-93-91</a>
+            </div>
+            <p><?= Yii::powered() ?></p>
+        </div>
+        <div class="pull-right">
+            <p>Адрес: г.Краснодар, ул. Хакурате, 5</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2819.1268542263538!2d38.97667671586467!3d45.04264757909832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40f04f9ccb13411f%3A0x5c7864333218f009!2z0YPQuy4g0KXQsNC60YPRgNCw0YLQtSwgNSwg0JrRgNCw0YHQvdC-0LTQsNGALCDQmtGA0LDRgdC90L7QtNCw0YDRgdC60LjQuSDQutGA0LDQuSwgMzUwMDE1!5e0!3m2!1sru!2sru!4v1556467584514!5m2!1sru!2sru" width="300" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
     </div>
 </footer>
 
