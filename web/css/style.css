@@ -1224,20 +1224,7 @@ Components
 ========================================
 */
 /* Buttons */
-.btn {
-  border-bottom: none !important;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-right: 10px;
-}
+
 .btn:hover, .btn:focus, .btn:active {
   box-shadow: none;
   outline: none !important;
@@ -1899,5 +1886,16 @@ a > img.fh5co-align-center {
   margin-top: 25px;
 }
 
+.site-map {
+  text-align: center;
+}
+
+.site-map li {
+  list-style: none;
+}
+
+.site-map li a {
+  font-size: 30px;
+}
 
 /*# sourceMappingURL=style.css.map */

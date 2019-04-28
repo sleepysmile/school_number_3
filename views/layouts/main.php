@@ -67,6 +67,7 @@ AppAsset::register($this);
                 ['label' => 'Преподовательский состав', 'url' => ['/teacher/index']],
                 ['label' => 'Контакты', 'url' => ['/site/contact']],
                 ['label' => 'Настройки аккаунта', 'url' => ['user/user-settings'], 'visible' => !Yii::$app->user->isGuest],
+                ['label' => 'Карта сайта', 'url' => ['site/site-map'], 'visible' => !Yii::$app->user->isGuest],
                 Yii::$app->user->isGuest ? (
                 ['label' => 'Вход', 'url' => ['/site/login']]
                 ) : (
@@ -98,6 +99,7 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left"><?= Yii::powered() ?></p>
+        <p class="pull-right">Адрес: г.Краснодар, ул. Хакурате, 5</p>
 
     </div>
 </footer>

@@ -200,4 +200,10 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionSiteMap()
+    {
+        return $this->render('site-map');
+    }
+    
 }
