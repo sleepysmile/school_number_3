@@ -3,31 +3,17 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Teacher;
-use app\models\search\TeacherSearch;
+use app\models\Schedule;
+use app\models\search\ScheduleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use zxbodya\yii2\imageAttachment\ImageAttachmentAction;
 
 /**
- * TeacherController implements the CRUD actions for Teacher model.
+ * ScheduleController implements the CRUD actions for Schedule model.
  */
-class TeacherController extends Controller
+class ScheduleController extends Controller
 {
-    public function actions()
-    {
-        return [
-            'imgAttachApi' => [
-                'class' => ImageAttachmentAction::className(),
-                // mappings between type names and model classes (should be the same as in behaviour)
-                'types' => [
-                    'teacher' => Teacher::class
-                ]
-            ],
-        ];
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -44,12 +30,12 @@ class TeacherController extends Controller
     }
 
     /**
-     * Lists all Teacher models.
+     * Lists all Schedule models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TeacherSearch();
+        $searchModel = new ScheduleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -59,7 +45,7 @@ class TeacherController extends Controller
     }
 
     /**
-     * Displays a single Teacher model.
+     * Displays a single Schedule model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -72,13 +58,13 @@ class TeacherController extends Controller
     }
 
     /**
-     * Creates a new Teacher model.
+     * Creates a new Schedule model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Teacher();
+        $model = new Schedule();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -90,7 +76,7 @@ class TeacherController extends Controller
     }
 
     /**
-     * Updates an existing Teacher model.
+     * Updates an existing Schedule model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -110,7 +96,7 @@ class TeacherController extends Controller
     }
 
     /**
-     * Deletes an existing Teacher model.
+     * Deletes an existing Schedule model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -124,15 +110,15 @@ class TeacherController extends Controller
     }
 
     /**
-     * Finds the Teacher model based on its primary key value.
+     * Finds the Schedule model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Teacher the loaded model
+     * @return Schedule the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Teacher::findOne($id)) !== null) {
+        if (($model = Schedule::findOne($id)) !== null) {
             return $model;
         }
 

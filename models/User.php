@@ -1,9 +1,12 @@
 <?php
 namespace app\models;
+use app\models\query\UserQuery;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\db\Exception;
+use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
 use zxbodya\yii2\imageAttachment\ImageAttachmentBehavior;
 
@@ -20,6 +23,7 @@ use zxbodya\yii2\imageAttachment\ImageAttachmentBehavior;
  * @property integer $updated_at
  * @property string $password write-only password
  * @property string $authKey
+ * @property mixed $teacher
  * @property string $access_token [varchar(255)]
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -224,5 +228,30 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public static function getTeacher()
+    {
+        $teacher = 'admin';
+
+        return static::find()
+            ->select('user.*')
+            ->leftJoin('auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where(['auth_assignment.item_name' => $teacher])
+            ->all();
+    }
+
+    public static function namesTeacher()
+    {
+        return ArrayHelper::map(static::getTeacher(), 'username', 'username');
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return UserQuery
+     */
+    public static function find()
+    {
+        return new UserQuery(get_called_class());
     }
 }

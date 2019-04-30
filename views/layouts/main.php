@@ -67,7 +67,7 @@ AppAsset::register($this);
                 ['label' => 'Контакты', 'url' => ['/site/contact']],
                 ['label' => 'Настройки аккаунта', 'url' => ['user/user-settings'], 'visible' => !Yii::$app->user->isGuest],
                 ['label' => 'Карта сайта', 'url' => ['site/site-map']],
-                ['label' => 'Регистрация', 'url' => ['/site/signup']],
+                ['label' => 'Регистрация', 'url' => ['/site/signup'], 'visible' => Yii::$app->user->isGuest],
                 Yii::$app->user->isGuest ? (
                 ['label' => 'Вход', 'url' => ['/site/login']]
                 ) : (

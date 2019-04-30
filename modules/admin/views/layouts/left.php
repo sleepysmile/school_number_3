@@ -53,6 +53,10 @@ use yii\widgets\Menu;
                             'label' => 'Учителя',
                             'url' => ['teacher/index'],
                         ],
+                        [
+                            'label' => 'Расписание',
+                            'url' => ['schedule/index'],
+                        ],
                     ],
                 ]
             );

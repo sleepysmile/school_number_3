@@ -63,6 +63,11 @@ class Disciplines extends \yii\db\ActiveRecord
         return ArrayHelper::map(static::find()->active()->all(), 'id', 'name');
     }
 
+    public static function namesFromTeacher()
+    {
+        return ArrayHelper::map(static::find()->active()->all(), 'name', 'name');
+    }
+
     /**
      * {@inheritdoc}
      * @return \app\models\query\DisciplinesQuery the active query used by this AR class.
