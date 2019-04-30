@@ -28,12 +28,20 @@ use zxbodya\yii2\imageAttachment\ImageAttachmentBehavior;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    public $role;
+
     const ROLE_USER = 'user';
     const ROLE_ADMINISTRATOR = 'admin';
 
 
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 1;
+
+    public const STATUS = [
+        1 => 'Активный',
+        0 => 'Удаленный'
+    ];
+
     /**
      * @inheritdoc
      */
@@ -93,8 +101,30 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
             [['username'], 'string'],
+            [['role'], 'safe'],
         ];
     }
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Имя пользователя',
+            'status' => 'Статус',
+            'role' => 'Роль пользователя'
+        ];
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        $model = new AuthAssignment([
+            'user_id' => $this->id,
+            'item_name' => $this->role
+        ]);
+
+        $model->save();
+    }
+
     /**
      * @inheritdoc
      */
@@ -244,6 +274,11 @@ class User extends ActiveRecord implements IdentityInterface
     public static function namesTeacher()
     {
         return ArrayHelper::map(static::getTeacher(), 'username', 'username');
+    }
+
+    public function getRole()
+    {
+        return $this->role = AuthItem::find()->all();
     }
 
     /**
