@@ -100,6 +100,10 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                // TEACHER
+                ['pattern' => '/teacher' , 'route' => 'teacher/index'],
+                // NEWS
+                ['pattern' => '/news/<slug>' , 'route' => 'news/view'],
             ]
         ],
     ],

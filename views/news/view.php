@@ -1,8 +1,11 @@
 <?php
 
 /** @var $model /app/model/News */
+/* @var $this yii\web\View */
 
 use yii2mod\comments\widgets\Comment;
+
+$this->title = 'Новость: ' . $model->slug;
 
 ?>
 

@@ -3,10 +3,12 @@
 use yii\widgets\ActiveForm;
 use zxbodya\yii2\imageAttachment\ImageAttachmentWidget;
 
+$this->title = 'Настройки пользователя';
+
 ?>
 
 <?php $form = ActiveForm::begin([
-    'options' => ['class' => 'top-margin']
+    'options' => ['class' => 'top-margin'],
 ]) ?>
 
 <?php try {
