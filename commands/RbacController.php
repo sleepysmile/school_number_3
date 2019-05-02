@@ -24,6 +24,9 @@ class RbacController extends Controller
         $admin = $auth->createRole('admin');
         $auth->add($admin);
 
+        $teacher = $auth->createRole('teacher');
+        $auth->add($teacher);
+
         // Назначение ролей пользователям. 1 и 2 это IDs возвращаемые IdentityInterface::getId()
         // обычно реализуемый в модели User.
         $auth->assign($admin, 1);
