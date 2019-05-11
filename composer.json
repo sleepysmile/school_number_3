@@ -27,7 +27,9 @@
         "yii2tech/ar-softdelete": "*",
         "kartik-v/yii2-widget-select2": "@dev",
         "voskobovich/yii2-many-many-behavior": "^3.0",
-        "yii2mod/yii2-comments": "*"
+        "yii2mod/yii2-comments": "*",
+        "moonlandsoft/yii2-phpexcel": "*",
+        "kartik-v/yii2-widget-depdrop": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

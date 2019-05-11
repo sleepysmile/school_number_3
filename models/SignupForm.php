@@ -6,6 +6,14 @@ use yii\base\Model;
 
 class SignupForm extends Model
 {
+    public $role;
+
+    public $status;
+
+    public $classes;
+
+    public $letter;
+
     /** @var string - Имя пользователя */
     public $username;
 
@@ -25,6 +33,10 @@ class SignupForm extends Model
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
+            ['role', 'safe'],
+            ['status', 'safe'],
+            ['classes', 'safe'],
+            ['classes', 'safe'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => User::class, 'message' => 'Такая почта уже занята.'],
             ['password', 'required'],
@@ -32,10 +44,20 @@ class SignupForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Имя пользователя',
+            'password' => 'Пароль пользователя',
+            'role' => 'Роль на сайте',
+            'status' => 'Статус аккаунта',
+        ];
+    }
+
     /**
      * Signs user up.
      *
-     * @return User|null the saved model or null if saving fails
+     * @return bool
      * @throws \yii\base\Exception
      */
     public function signup()
@@ -49,7 +71,52 @@ class SignupForm extends Model
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
+        $user->status = $this->status ?: 0;
 
-        return $user->save() ? $user : null;
+        $user->save();
+
+        if (!empty($this->role === 'parent')) {
+            $model = new ParentToClass([
+                'letter' => $this->letter,
+                'classes' => $this->classes,
+                'user_id' => $user->id
+            ]);
+
+            $model->save();
+        }
+
+
+        return  $user->getAuthAssignment($this->role ?: 'user', $user->id);
     }
+
+    /**
+     * @param int $id
+     * @return bool
+     * @throws \yii\base\Exception
+     */
+    public function refactor(int $id)
+    {
+        $user = User::findOne(['id' => $id]);
+
+        $user->username = $this->username;
+        $user->email = $this->email;
+        $user->setPassword($this->password);
+        $user->generateAuthKey();
+        $user->status = $this->status ?: 0;
+
+        $user->save();
+
+        if (!empty($this->role === 'parent')) {
+            $model = new ParentToClass([
+                'letter' => $this->letter,
+                'classes' => $this->classes,
+                'user_id' => $user->id
+            ]);
+
+            $model->save();
+        }
+
+        return  $user->getAuthAssignment($this->role ?: 'user', $user->id);
+    }
+
 }
