@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%auth_assignment}}".
@@ -14,7 +16,7 @@ use Yii;
  * @property AuthItem $itemName
  */
 class AuthAssignment extends \yii\db\ActiveRecord
-{//TODO
+{
     /**
      * {@inheritdoc}
      */
@@ -34,6 +36,17 @@ class AuthAssignment extends \yii\db\ActiveRecord
             [['item_name', 'user_id'], 'string', 'max' => 64],
             [['item_name', 'user_id'], 'unique', 'targetAttribute' => ['item_name', 'user_id']],
             [['item_name'], 'exist', 'skipOnError' => true, 'targetClass' => AuthItem::className(), 'targetAttribute' => ['item_name' => 'name']],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            'time' => [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => null
+            ]
         ];
     }
 

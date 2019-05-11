@@ -65,24 +65,29 @@ AppAsset::register($this);
                 ],
                 ['label' => 'Преподовательский состав', 'url' => ['/teacher/index']],
                 ['label' => 'Контакты', 'url' => ['/site/contact']],
-                ['label' => 'Настройки аккаунта', 'url' => ['user/user-settings'], 'visible' => !Yii::$app->user->isGuest],
                 ['label' => 'Карта сайта', 'url' => ['site/site-map']],
+                ['label' => 'Вход', 'url' => ['/site/login'], 'visible' => Yii::$app->user->isGuest],
                 ['label' => 'Регистрация', 'url' => ['/site/signup'], 'visible' => Yii::$app->user->isGuest],
-                Yii::$app->user->isGuest ? (
-                ['label' => 'Вход', 'url' => ['/site/login']]
-                ) : (
-                    '<li>'
-                    . Html::beginForm(['/site/logout'], 'post')
-                    . Html::submitButton(
-                        'Выйти из аккаунта',
-                        ['class' => 'btn btn-link logout']
-                    )
-                    . Html::endForm()
-                    . '</li>'
-                )
+                [
+                    'label' => 'Аккаунт',
+                    'items' => [
+                        ['label' => 'Настройки аккаунта', 'url' => ['user/user-settings']],
+                        ['label' => 'Личный кабинет', 'url' => ['/personal-area/index'], 'visible' => (Yii::$app->user->can('teacher') || Yii::$app->user->can('admin'))],
+                        (
+                            '<li>'
+                            . Html::a("Выход", ['/site/logout'], [
+                                'data' => ['method' => 'post'],
+                            ])
+                            . '</li>'
+                        )
+                    ],
+                    'visible' => !Yii::$app->user->isGuest
+                ],
+
             ],
         ]);
     } catch (Exception $e) {
+        echo $e->getMessage();
     }
     NavBar::end();
     ?>

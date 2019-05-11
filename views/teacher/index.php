@@ -11,7 +11,7 @@ $this->title = 'Преподавательский состав';
     <div class="fh5co-cards">
         <div class="container-fluid">
             <div class="row animate-box">
-                <div class="col-md-12 heading text-center"><h2>Новости школы</h2></div>
+                <div class="col-md-12 heading text-center"><h2><?= $this->title ?></h2></div>
             </div>
             <div class="row">
 

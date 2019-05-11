@@ -17,7 +17,7 @@ class ScheduleSearch extends Schedule
     public function rules()
     {
         return [
-            [['id', 'day', 'teacher', 'lesson', 'class', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
+            [['id', 'day', 'teacher', 'lesson', 'class'], 'string'],
         ];
     }
 

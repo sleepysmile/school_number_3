@@ -22,6 +22,8 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property User $createdBy
  * @property User $updatedBy
+ * @property string $letter [varchar(255)]
+ * @property int $number [int(11)]
  */
 class Schedule extends \yii\db\ActiveRecord
 {
@@ -55,6 +57,15 @@ class Schedule extends \yii\db\ActiveRecord
         'Г' => 'Г',
     ];
 
+    public const NUMBER = [
+        1 => 1,
+        2 => 2,
+        3 => 3,
+        4 => 4,
+        5 => 5,
+        6 => 6,
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -77,7 +88,7 @@ class Schedule extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
+            [['created_at', 'created_by', 'updated_at', 'updated_by', 'number'], 'integer'],
             [['day', 'teacher', 'lesson', 'class', 'letter'], 'string'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['updated_by' => 'id']],
@@ -95,6 +106,7 @@ class Schedule extends \yii\db\ActiveRecord
             'lesson' => 'Урок',
             'class' => 'Класс',
             'letter' => 'Буква',
+            'number' => 'Номер урока'
         ];
     }
 
@@ -112,6 +124,21 @@ class Schedule extends \yii\db\ActiveRecord
     public function getUpdatedBy()
     {
         return $this->hasOne(User::class, ['id' => 'updated_by']);
+    }
+
+    public function getDay()
+    {
+        return static::DAY[$this->day];
+    }
+
+    public function getClass()
+    {
+        return static::CLASSES[$this->class] . static::LETTER[$this->letter];
+    }
+
+    public function getLesson()
+    {
+        return $this->number . ' урок';
     }
 
     /**

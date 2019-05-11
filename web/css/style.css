@@ -1898,4 +1898,22 @@ a > img.fh5co-align-center {
   font-size: 30px;
 }
 
+.columns {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.lesson {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-right: 0;
+  width: 20%;
+}
+
+.block-lesson {
+  display: flex;
+  justify-content: space-around;
+}
+
 /*# sourceMappingURL=style.css.map */

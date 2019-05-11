@@ -2,6 +2,9 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\AuthAssignment;
+use app\models\ParentToClass;
+use app\models\SignupForm;
 use Yii;
 use app\models\User;
 use app\models\search\UserSearch;
@@ -43,6 +46,23 @@ class UserController extends Controller
         ];
     }
 
+    public function actionClass() {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $classes_id = $parents[0];
+                if ($classes_id === 'parent') {
+                    $out = ParentToClass::LETTER;
+                    return ['output' => $out, 'selected' => ''];
+                }
+            }
+
+            return ['output' => '', 'selected' => ''];
+        }
+    }
+
     /**
      * Lists all User models.
      * @return mixed
@@ -75,13 +95,14 @@ class UserController extends Controller
      * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @throws \yii\base\Exception
      */
     public function actionCreate()
     {
-        $model = new User();
+        $model = new SignupForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            return $this->redirect(['user/index']);
         }//TODO
 
         return $this->render('create', [
@@ -99,8 +120,19 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+//var_dump(Yii::$app->request->post('User')['role']);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            if (!empty($signUp = AuthAssignment::findOne(['user_id' => $id]))) {
+                $signUp->item_name = Yii::$app->request->post('User')['role'];
+                $signUp->save(false);
+            } else {
+                $signUp = new AuthAssignment();
+                $signUp->user_id = $id;
+                $signUp->item_name = Yii::$app->request->post('User')['role'];
+                $signUp->save(false);
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

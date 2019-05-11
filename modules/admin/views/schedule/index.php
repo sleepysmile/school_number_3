@@ -1,7 +1,9 @@
 <?php
 
+use app\modules\admin\model\ImportForm;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\ScheduleSearch */
@@ -19,6 +21,26 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?php $form = ActiveForm::begin([
+        'action' => ['import'],
+        'options' => ['enctype' => 'multipart/form-data'],
+    ]) ?>
+    <?php echo $form->field(new ImportForm(), 'file')->fileInput() ?>
+    <?php echo Html::submitButton('Импорт инструкторов из Excel', ['class' => 'btn btn-info']) ?>
+    <?php ActiveForm::end() ?>
+
+    <?php $form = ActiveForm::begin([
+        'action' => ['delete-all'],
+    ]) ?>
+
+    <div class="pull-right">
+
+        <?php echo Html::submitButton('Удалить все', ['class' => 'btn btn-danger']) ?>
+
+    </div>
+
+    <?php ActiveForm::end() ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

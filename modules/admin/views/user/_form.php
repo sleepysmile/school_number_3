@@ -1,6 +1,8 @@
 <?php
 
+use kartik\depdrop\DepDrop;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -16,15 +18,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'password')->textInput(['maxlength' => true])->label('Пароль') ?>
 
     <?= $form->field($model, 'role')->widget(
         \kartik\select2\Select2::class,
         [
             'data' => \app\models\AuthItem::role(),
-            'options' => ['placeholder' => 'Роль пользователя']
+            'options' => [
+                'placeholder' => 'Роль пользователя',
+                'id' => 'role-id']
         ]
-    ) ?>
+    )->label('Роль на сайте') ?>
 
     <?= $form->field($model, 'status')->widget(
         \kartik\select2\Select2::class,
@@ -33,6 +37,26 @@ use yii\widgets\ActiveForm;
             'options' => ['placeholder' => 'Статус пользователя']
         ]
     ) ?>
+
+    <?= $form->field($model, 'classes')->widget(
+        \kartik\select2\Select2::class,
+        [
+            'data' => \app\models\ParentToClass::CLASSES,
+            'options' => [
+                'placeholder' => 'Выберите класс ребёнка родителя',
+            ]
+        ]
+    )->label('Класс') ?>
+
+    <?= $form->field($model, 'letter')->widget(
+        \kartik\select2\Select2::class,
+        [
+            'data' => \app\models\ParentToClass::LETTER,
+            'options' => [
+                'placeholder' => 'Выберите букву ребёнка родителя',
+            ]
+        ]
+    )->label('Буква') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>

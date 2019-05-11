@@ -28,6 +28,14 @@ use yii\widgets\ActiveForm;
         ]
     ) ?>
 
+    <?= $form->field($model, 'number')->widget(
+        \kartik\select2\Select2::class,
+        [
+            'data' => \app\models\Schedule::NUMBER,
+            'options' => ['placeholder' => 'Выбирите день недели']
+        ]
+    ) ?>
+
     <?= $form->field($model, 'lesson')->widget(
         \kartik\select2\Select2::class,
         [

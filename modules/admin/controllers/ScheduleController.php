@@ -2,12 +2,17 @@
 
 namespace app\modules\admin\controllers;
 
+
+use app\modules\admin\model\dto\ScheduleDto;
+use app\modules\admin\model\ImportForm;
 use Yii;
 use app\models\Schedule;
 use app\models\search\ScheduleSearch;
 use yii\web\Controller;
+use yii\web\MethodNotAllowedHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ScheduleController implements the CRUD actions for Schedule model.
@@ -27,6 +32,44 @@ class ScheduleController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function actionImport()
+    {
+        if (!Yii::$app->request->isPost) {
+            throw new MethodNotAllowedHttpException();
+        }
+
+        $message = [
+            'text' => 'При обработке файла произошла ошибка',
+            'class' => 'alert-danger',
+        ];
+
+        $model = new ImportForm();
+        $model->file = UploadedFile::getInstance($model, 'file');
+        if (!$model->validate()) {
+            Yii::error($model->getErrors());
+            $message = [
+                'text' => 'Неверный формат файла',
+                'class' => 'alert-danger',
+            ];
+        } else {
+            $data = $model->parse();
+            ScheduleDto::loadFromExcel($data);
+
+            if (!empty($data)) {
+                $message['text'] = 'Данные успешно импортированы';
+                $message['class'] = 'alert-success';
+            }
+
+        }
+
+        Yii::$app->getSession()->setFlash('alert', [
+            'body' => $message['text'],
+            'options' => ['class' => $message['class']],
+        ]);
+
+        return Yii::$app->controller->redirect(['schedule/index']);
     }
 
     /**
@@ -105,6 +148,21 @@ class ScheduleController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
+    public function actionDeleteAll()
+    {
+        $models = Schedule::find()->all();
+
+        foreach ($models as $model) {
+            $model->delete();
+        }
 
         return $this->redirect(['index']);
     }

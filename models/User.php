@@ -28,8 +28,6 @@ use zxbodya\yii2\imageAttachment\ImageAttachmentBehavior;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
-    public $role;
-
     const ROLE_USER = 'user';
     const ROLE_ADMINISTRATOR = 'admin';
 
@@ -101,7 +99,6 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
             [['username'], 'string'],
-            [['role'], 'safe'],
         ];
     }
 
@@ -110,19 +107,62 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             'username' => 'Имя пользователя',
             'status' => 'Статус',
-            'role' => 'Роль пользователя'
         ];
     }
 
-    public function afterSave($insert, $changedAttributes)
+    /**
+     * @return bool|void
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
+    public function beforeDelete()
     {
-        parent::afterSave($insert, $changedAttributes);
+        if (parent::beforeDelete()) {
+            foreach (AuthAssignment::find()->where(['user_id' => $this->id])->all() as $user) {
+                $user->delete();
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getAuth()
+    {
+        return $this->hasOne(AuthAssignment::class, ['user_id' => 'id']);
+    }
+
+    public function getClasses()
+    {
+        return $this->hasOne(ParentToClass::class, ['user_id' => 'id']);
+    }
+
+    public function getLetter()
+    {
+        if (!empty($this->classes)) {
+
+            return $this->classes->letter;
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $role
+     * @param int $id
+     * @return bool
+     */
+    public function getAuthAssignment(string $role ,int $id)
+    {
         $model = new AuthAssignment([
-            'user_id' => $this->id,
-            'item_name' => $this->role
+            'user_id' => $id,
+            'item_name' => $role,
         ]);
 
-        $model->save();
+        $model->save(false);
+
+        return true;
     }
 
     /**
@@ -262,7 +302,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public static function getTeacher()
     {
-        $teacher = 'admin';
+        $teacher = 'teacher';
 
         return static::find()
             ->select('user.*')
@@ -278,7 +318,11 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getRole()
     {
-        return $this->role = AuthItem::find()->all();
+        if (!empty($this->auth)) {
+            return $this->auth->item_name;
+        }
+
+        return null;
     }
 
     /**

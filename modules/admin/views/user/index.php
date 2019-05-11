@@ -28,9 +28,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'username',
-            'password',
+            'role',
             'email:email',
-            'status',
+            [
+                'attribute' => 'status',
+                'value' => function ($data) {
+                    if ($data->status === 1) {
+                        return 'Активированный';
+                    }
+
+                    return 'Не активированный';
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
