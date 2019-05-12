@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'options' => ['enctype' => 'multipart/form-data'],
     ]) ?>
     <?php echo $form->field(new ImportForm(), 'file')->fileInput() ?>
-    <?php echo Html::submitButton('Импорт инструкторов из Excel', ['class' => 'btn btn-info']) ?>
+    <?php echo Html::submitButton('Импорт расписания из Excel', ['class' => 'btn btn-info']) ?>
     <?php ActiveForm::end() ?>
 
     <?php $form = ActiveForm::begin([
@@ -53,6 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'teacher',
             'lesson',
             'class',
+            'date',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

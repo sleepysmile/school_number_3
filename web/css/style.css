@@ -1852,7 +1852,9 @@ a > img.fh5co-align-center {
 
 .featured-image {
   display: flex;
+  justify-content: space-around;
   margin-bottom: 50px;
+  padding-top: 40px;
 }
 
 .featured-image img {
@@ -1914,6 +1916,27 @@ a > img.fh5co-align-center {
 .block-lesson {
   display: flex;
   justify-content: space-around;
+}
+
+.img-pad {
+  padding-top: 40px;
+}
+
+.glass-all {
+  margin-bottom: 20px;
+}
+
+.news-ann {
+  display: flex;
+
+}
+
+.news-ann div {
+  margin-right: 15px;
+}
+
+.title-separator {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */
