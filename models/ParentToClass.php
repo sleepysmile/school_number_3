@@ -66,4 +66,9 @@ class ParentToClass extends \yii\db\ActiveRecord
             'letter' => 'Letter',
         ];
     }
+
+    public function getClass()
+    {
+        return static::CLASSES[$this->classes] . static::LETTER[$this->letter];
+    }
 }
