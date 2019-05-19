@@ -10,13 +10,16 @@ $config = [
     'basePath' => dirname(__DIR__),
     'layout' => 'main',
     'bootstrap' => ['log'],
-    'aliases' => [
+        'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
+            'controllerMap' => [
+                'comment' => \yii2mod\comments\controllers\ManageController::class,
+            ],
             'controllerNamespace' => 'app\modules\admin\controllers',
             'layout' => 'base',
             'as access' => [

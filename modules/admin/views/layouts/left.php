@@ -47,6 +47,10 @@ use yii\widgets\Menu;
                             'label' => 'Расписание',
                             'url' => ['schedule/index'],
                         ],
+                        [
+                            'label' => 'Модерация комментариев',
+                            'url' => ['comment/index'],
+                        ],
                     ],
                 ]
             );

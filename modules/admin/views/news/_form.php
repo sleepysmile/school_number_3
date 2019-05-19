@@ -26,7 +26,18 @@ use zxbodya\yii2\galleryManager\GalleryManager;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'text')->widget(\yii\imperavi\Widget::class,
+        [
+            'plugins' => ['fullscreen', 'fontcolor', 'video'],
+            'options' => [
+                'minHeight' => 400,
+                'maxHeight' => 400,
+                'buttonSource' => true,
+                'convertDivs' => false,
+                'removeEmptyTags' => true,
+            ],
+        ])
+    ?>
 
     <?= $form->field($model, 'annotation')->textInput(['maxlength' => true]) ?>
 

@@ -1,5 +1,6 @@
 <?php
 
+use kartik\date\DatePicker;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -57,6 +58,17 @@ use yii\widgets\ActiveForm;
         [
             'data' => \app\models\Schedule::LETTER,
             'options' => ['placeholder' => 'Выбирите букву класса']
+        ]
+    ) ?>
+
+    <?= $form->field($model, 'date')->widget(
+        DatePicker::class,
+        [
+            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+            'pluginOptions' => [
+                'autoclose'=>true,
+                'format' => 'yyyy-mm-dd'
+            ]
         ]
     ) ?>
 
