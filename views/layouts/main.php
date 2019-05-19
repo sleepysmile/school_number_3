@@ -72,7 +72,7 @@ AppAsset::register($this);
                     'label' => 'Аккаунт',
                     'items' => [
                         ['label' => 'Настройки аккаунта', 'url' => ['user/user-settings']],
-                        ['label' => 'Личный кабинет', 'url' => ['/personal-area/index'], 'visible' => (Yii::$app->user->can('teacher') || Yii::$app->user->can('admin'))],
+                        ['label' => 'Личный кабинет', 'url' => ['/personal-area/index'], 'visible' => (Yii::$app->user->can('teacher') || Yii::$app->user->can('parent'))],
                         (
                             '<li>'
                             . Html::a("Выход", ['/site/logout'], [

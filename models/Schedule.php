@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\behaviors\DateTimeFormatBehavior;
 use app\models\query\ScheduleQuery;
 use Yii;
 use yii\behaviors\BlameableBehavior;
@@ -24,6 +25,7 @@ use yii\behaviors\TimestampBehavior;
  * @property User $updatedBy
  * @property string $letter [varchar(255)]
  * @property int $number [int(11)]
+ * @property string $date [date]
  */
 class Schedule extends \yii\db\ActiveRecord
 {
@@ -79,6 +81,7 @@ class Schedule extends \yii\db\ActiveRecord
         return [
             TimestampBehavior::class,
             BlameableBehavior::class,
+
         ];
     }
 
@@ -89,6 +92,7 @@ class Schedule extends \yii\db\ActiveRecord
     {
         return [
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'number'], 'integer'],
+            [['date'], 'safe'],
             [['day', 'teacher', 'lesson', 'class', 'letter'], 'string'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['updated_by' => 'id']],

@@ -12,7 +12,11 @@ $this->title = 'Новость: ' . $model->slug;
 <section class="latest section">
     <div class="section-inner">
         <h2 class="heading"><?php echo $model->title ?></h2>
-        <p><?php echo $model->hit ?></p>
+        <div class="news-ann">
+            <div>Просмотры:  <?php echo $model->hit ?></div>
+            <div>Добавил: <?php echo $model->createdBy->username ?></div>
+            <div>Дата: <?php echo $model->date ?></div>
+        </div>
         <div class="content">
 
             <div class="item featured text-center">
@@ -34,9 +38,13 @@ $this->title = 'Новость: ' . $model->slug;
     </div><!--//section-inner-->
 </section>
 
+<?php if (!Yii::$app->user->isGuest) : ?>
+
 <?php try {
     echo Comment::widget([
         'model' => $model,
     ]);
 } catch (Exception $e) {
 } ?>
+
+<?php endif; ?>

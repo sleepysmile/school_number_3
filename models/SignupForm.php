@@ -35,8 +35,6 @@ class SignupForm extends Model
             ['email', 'email'],
             ['role', 'safe'],
             ['status', 'safe'],
-            ['classes', 'safe'],
-            ['classes', 'safe'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => User::class, 'message' => 'Такая почта уже занята.'],
             ['password', 'required'],
@@ -96,27 +94,36 @@ class SignupForm extends Model
      */
     public function refactor(int $id)
     {
-        $user = User::findOne(['id' => $id]);
-
+        $user = User::find()->where(['id' => $id])->one();
         $user->username = $this->username;
         $user->email = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        $user->status = $this->status ?: 0;
-
-        $user->save();
-
-        if (!empty($this->role === 'parent')) {
-            $model = new ParentToClass([
-                'letter' => $this->letter,
-                'classes' => $this->classes,
-                'user_id' => $user->id
-            ]);
-
-            $model->save();
+        if ($this->password !== $user->password) {
+            $user->setPassword($this->password);
         }
+        $user->generateAuthKey();
+        $user->status = $this->status;
+        $user->save(false);
 
-        return  $user->getAuthAssignment($this->role ?: 'user', $user->id);
+            $model = ParentToClass::find()->where(['user_id' => $user->id])->one();
+            if (!empty($model)) {
+                $model->letter = $this->letter;
+                $model->classes = $this->classes;
+//var_dump($this->classes);
+                $model->save();
+            } else {
+                $model = new ParentToClass([
+                    'letter' => $this->letter,
+                    'classes' => $this->classes,
+                    'user_id' => $user->id
+                ]);
+
+                $model->save(false);
+            }
+
+        if ($this->role == null) {
+            return true;
+        }
+        return true;
     }
 
 }

@@ -116,24 +116,38 @@ class UserController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \yii\base\Exception
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-//var_dump(Yii::$app->request->post('User')['role']);
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
-            if (!empty($signUp = AuthAssignment::findOne(['user_id' => $id]))) {
-                $signUp->item_name = Yii::$app->request->post('User')['role'];
-                $signUp->save(false);
-            } else {
-                $signUp = new AuthAssignment();
-                $signUp->user_id = $id;
-                $signUp->item_name = Yii::$app->request->post('User')['role'];
-                $signUp->save(false);
+        $post = Yii::$app->request->post();
+        if (!empty($post)) {
+            $parentToClass = new SignupForm([
+                'role' => $post['User']['role'],
+                'username' => $post['User']['username'],
+                'email' => $post['User']['email'],
+                'classes' => $post['User']['classes'],
+                'letter' => $post['User']['letter'],
+                'status' => $post['User']['status'],
+                'password' => $post['User']['password'],
+            ]);
+
+            if ($parentToClass->refactor($id)) {
+                $signUp = AuthAssignment::find()->where(['user_id' => $id])->one();
+                if (!empty($signUp)) {
+                    $signUp->item_name = Yii::$app->request->post('User')['role'];
+                    $signUp->save(false);
+                } else {
+                    $signUp = new AuthAssignment();
+                    $signUp->user_id = $id;
+                    $signUp->item_name = Yii::$app->request->post('User')['role'];
+                    $signUp->save(false);
+                }
+
+                return $this->redirect(['view', 'id' => $model->id]);
             }
-
-            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [

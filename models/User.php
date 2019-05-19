@@ -153,7 +153,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @param int $id
      * @return bool
      */
-    public function getAuthAssignment(string $role ,int $id)
+    public function getAuthAssignment(string $role = null ,int $id)
     {
         $model = new AuthAssignment([
             'user_id' => $id,
