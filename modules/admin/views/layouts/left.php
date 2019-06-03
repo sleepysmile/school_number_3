@@ -44,6 +44,26 @@ use yii\widgets\Menu;
                             'url' => ['teacher/index'],
                         ],
                         [
+                            'label' => 'Символика школы',
+                            'url' => ['simbol-of-school/update', 'id' => 1],
+                        ],
+                        [
+                            'label' => 'Электронные ресурсы',
+                            'url' => ['el-res/update', 'id' => 1],
+                        ],
+                        [
+                            'label' => 'ГИА',
+                            'url' => ['gia/update', 'id' => 1],
+                        ],
+                        [
+                            'label' => 'Общественное управление',
+                            'url' => ['public-administration/update', 'id' => 1],
+                        ],
+                        [
+                            'label' => 'Наш Профсоюз',
+                            'url' => ['union/update', 'id' => 1],
+                        ],
+                        [
                             'label' => 'Расписание',
                             'url' => ['schedule/index'],
                         ],
