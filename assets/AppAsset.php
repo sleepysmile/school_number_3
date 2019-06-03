@@ -33,13 +33,15 @@ class AppAsset extends AssetBundle
 //        'css/themify-icons.css',
     ];
     public $js = [
-        'js/custom.js'
+        'js/custom.js',
+        'js/app.js'
     ];
 
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
         'yii\bootstrap\BootstrapPluginAsset',
+
     ];
 
     public $jsOptions = [

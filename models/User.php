@@ -325,6 +325,11 @@ class User extends ActiveRecord implements IdentityInterface
         return null;
     }
 
+    public function getAvatar()
+    {
+        return $this->getBehavior('coverBehavior')->getUrl('small');
+    }
+
     /**
      * {@inheritdoc}
      * @return UserQuery

@@ -9,6 +9,11 @@ $this->title = 'Новость: ' . $model->slug;
 
 ?>
 
+<style>
+    .comment-author-avatar img{
+        width: 60px;
+    }
+</style>
 <section class="latest section">
     <div class="section-inner">
         <h2 class="heading"><?php echo $model->title ?></h2>
@@ -24,8 +29,8 @@ $this->title = 'Новость: ' . $model->slug;
 
                     <?php foreach ($model->getBehavior('galleryBehavior')->getImages() as $image) : ?>
 
-                        <img class="img-responsive project-image" src="<?php echo $image->getUrl('medium') ?>" />
-
+                        <img class="img-responsive project-image image-news" src="<?php echo $image->getUrl('medium') ?>" />
+                    
                     <?php endforeach; ?>
 
                 </div>
@@ -45,6 +50,7 @@ $this->title = 'Новость: ' . $model->slug;
         'model' => $model,
     ]);
 } catch (Exception $e) {
+    echo $e->getMessage();
 } ?>
 
 <?php endif; ?>

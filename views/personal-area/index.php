@@ -28,7 +28,7 @@
                         <div class="columns">
                             <div class="block-lesson">
                                 <div class="lesson">Урок</div>
-                                <div class="lesson">День недели</div>
+                                <div class="lesson hidden-xs">День недели</div>
                                 <div class="lesson">Класс</div>
                                 <div class="lesson">№ урока</div>
                             </div>
@@ -36,7 +36,7 @@
 
                             <div class="block-lesson">
                                 <div class="lesson"><?= $model->lesson ?></div>
-                                <div class="lesson"><?= $model->getDay() ?></div>
+                                <div class="lesson hidden-xs"><?= $model->getDay() ?></div>
                                 <div class="lesson"><?= $model->getClass() ?></div>
                                 <div class="lesson"><?= $model->getLesson() ?></div>
                             </div>
@@ -58,7 +58,7 @@
                             <div class="columns">
                                 <div class="block-lesson">
                                     <div class="lesson">Урок</div>
-                                    <div class="lesson">День недели</div>
+                                    <div class="lesson hidden-xs">День недели</div>
                                     <div class="lesson">Класс</div>
                                     <div class="lesson">№ урока</div>
                                 </div>
@@ -66,7 +66,7 @@
 
                                     <div class="block-lesson">
                                         <div class="lesson"><?= $model->lesson ?></div>
-                                        <div class="lesson"><?= $model->getDay() ?></div>
+                                        <div class="lesson hidden-xs"><?= $model->getDay() ?></div>
                                         <div class="lesson"><?= $model->getClass() ?></div>
                                         <div class="lesson"><?= $model->getLesson() ?></div>
                                     </div>
@@ -88,7 +88,7 @@
                             <div class="columns">
                                 <div class="block-lesson">
                                     <div class="lesson">Урок</div>
-                                    <div class="lesson">День недели</div>
+                                    <div class="lesson hidden-xs">День недели</div>
                                     <div class="lesson">Класс</div>
                                     <div class="lesson">№ урока</div>
                                 </div>
@@ -96,7 +96,7 @@
 
                                     <div class="block-lesson">
                                         <div class="lesson"><?= $model->lesson ?></div>
-                                        <div class="lesson"><?= $model->getDay() ?></div>
+                                        <div class="lesson hidden-xs"><?= $model->getDay() ?></div>
                                         <div class="lesson"><?= $model->getClass() ?></div>
                                         <div class="lesson"><?= $model->getLesson() ?></div>
                                     </div>

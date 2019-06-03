@@ -110,7 +110,8 @@ class Schedule extends \yii\db\ActiveRecord
             'lesson' => 'Урок',
             'class' => 'Класс',
             'letter' => 'Буква',
-            'number' => 'Номер урока'
+            'number' => 'Номер урока',
+            'date' => 'Дата урока'
         ];
     }
 

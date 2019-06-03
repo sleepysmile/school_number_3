@@ -14,6 +14,7 @@ class m190603_105848_create_simbol_of_school_table extends Migration
     {
         $this->createTable('{{%simbol_of_school}}', [
             'id' => $this->primaryKey(),
+            'info' => $this->text(),
         ]);
     }
 

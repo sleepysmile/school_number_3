@@ -24,8 +24,8 @@ use yii\widgets\Menu;
                     'options' => ['class' => 'sidebar-menu tree', 'data-widget' => 'tree'],
                     'items' => [
                         ['label' => 'Меню', 'options' => ['class' => 'header']],
-                        ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'], 'visible' => Yii::$app->user->can('admin')],
-                        ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'], 'visible' => Yii::$app->user->can('admin')],
+//                        ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'], 'visible' => Yii::$app->user->can('admin')],
+//                        ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'], 'visible' => Yii::$app->user->can('admin')],
                         ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                         [
                             'label' => 'Пользователи',

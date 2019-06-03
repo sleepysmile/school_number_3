@@ -9,6 +9,8 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'layout' => 'main',
+    'language' => 'ru-RU',
+//    'sourceLanguage' => 'ru-RU',
     'bootstrap' => ['log'],
         'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -40,7 +42,7 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'CZIAYQaOeaXT1VHbIJhZBB4ObbMJyjIQ',
-//            'baseUrl' => ''
+            'baseUrl' => ''
         ],
         'assetManager' => [
             'bundles' => [
@@ -64,8 +66,17 @@ $config = [
         'i18n' => [
             'translations' => [
                 'yii2mod.comments' => [
-                    'class' => yii\i18n\PhpMessageSource::class,
+                    'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@yii2mod/comments/messages',
+                ],
+                'web*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    //'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app'       => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
                 ],
             ]
         ],

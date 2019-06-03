@@ -22,7 +22,7 @@ $this->title = 'Школа №3';
                         <div class="beetwen">
                             <?php foreach ($oneNews->getBehavior('galleryBehavior')->getImages() as $image) : ?>
 
-                                <img class="img-pad" src="<?php echo $image->getUrl('medium') ?>" alt="Free HTML5 Bootstrap template" class="image-size">
+                                <img class="img-pad image-size" src="<?php echo $image->getUrl('medium') ?>" alt="Free HTML5 Bootstrap template">
 
                             <?php endforeach; ?>
                         </div>

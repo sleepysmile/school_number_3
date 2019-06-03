@@ -2,6 +2,8 @@
 
 namespace app\assets;
 
+use Yii;
+use yii\base\View;
 use yii\web\AssetBundle;
 
 class AdminAsset extends AssetBundle
@@ -10,7 +12,9 @@ class AdminAsset extends AssetBundle
 
     public $css = [
         'datatables/dataTables.bootstrap.css',
-        'css/site.css'
+        'css/bootstrap.css',
+        'css/bootstrap.min.css',
+        'css/site.css',
     ];
     public $js = [
         'datatables/dataTables.bootstrap.min.js',
@@ -29,5 +33,7 @@ class AdminAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
         'yii\bootstrap\BootstrapPluginAsset',
+        'grozzzny\depends\bootstrap4\Bootstrap4Asset',
+        'grozzzny\depends\bootstrap4\Bootstrap4PluginAsset',
     ];
 }

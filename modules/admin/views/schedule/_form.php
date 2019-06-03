@@ -62,15 +62,14 @@ use yii\widgets\ActiveForm;
     ) ?>
 
     <?= $form->field($model, 'date')->widget(
-        DatePicker::class,
+        \trntv\yii\datetime\DateTimeWidget::class,
         [
-            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-            'pluginOptions' => [
-                'autoclose'=>true,
-                'format' => 'yyyy-mm-dd'
-            ]
-        ]
-    ) ?>
+            'momentDatetimeFormat' => 'YYYY-MM-DD',
+        ])
+    ?>
+
+    <?= $form->field($model, 'date')->input('date')
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>

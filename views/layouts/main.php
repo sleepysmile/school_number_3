@@ -25,39 +25,76 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+<style>
+    #finevision-need-pay {
+        display: none;
+    }
+
+    @media (max-width: 640px){
+        #finevision_banner{
+            display: none;
+        }
+    }
+</style>
+<header>
+    <div class="mobile-head container">
+        <div class="pull-left left-head">
+            <a href="<?= \yii\helpers\Url::home() ?>">МБОУ гимназия №3</a>
+        </div>
+        <div class="pull-right right-head">
+            <div>
+                <p>Адрес: г.Краснодар, ул. Хакурате, 5</p>
+                <a href="tel:255-93-91">Тел: 255-93-91</a>
+            </div>
+        </div>
+    </div>
+    <div id="finevision_banner" onclick="finevision.activate_navbar()" style="cursor: pointer; z-index: 9999; background: rgb(255, 255, 255); border: 2px solid rgb(0, 0, 0); float: right; position: fixed;     right: 0px;
+    top: 0;">
+        <img width="80" src="http://finevision.ru/static/banner1.jpg">
+        <script src="http://finevision.ru/static/js/finevision_banner.js">
+        </script>
+    </div>
+</header>
+
 
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'МБОУ гимназия №3',
-        'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-inverse',
         ],
     ]);
     try {
         echo Nav::widget([
-            'options' => ['class' => 'navbar-nav navbar-right'],
+            'options' => ['class' => 'navbar-nav'],
             'items' => [
                 [
                     'label' => 'Сведенья о школе',
                     'items' => [
                         ['label' => 'Сведения об образовательной организации', 'url' => ['/about/index']],
                         ['label' => 'Символика школы', 'url' => ['/#']],
-                        ['label' => 'Новости', 'url' => ['/#']],
                         ['label' => 'Прием в ОО', 'url' => ['/#']],
                         ['label' => 'Программа развития', 'url' => ['/#']],
                         ['label' => 'Организация учебно-воспитательного процесса', 'url' => ['/#']],
                         ['label' => 'Электронные образовательные ресурсы', 'url' => ['/#']],
-                        ['label' => 'Общественное управление', 'url' => ['/#']],
                         ['label' => 'Приоритетный национальный проект «Образование»', 'url' => ['/#']],
                         ['label' => 'Воспитательная работа', 'url' => ['/#']],
+                        ['label' => 'Государственная итоговая аттестация (ГИА)', 'url' => ['/#']],
+                        ['label' => 'Электронный журнал', 'url' => 'https://krd.rso23.ru/'],
+                        ['label' => 'Информационная безопасность', 'url' => ['/#']],
+                        ['label' => 'Наш профсоюз', 'url' => ['/#']],
+                    ],
+                ],
+                [
+                    'label' => 'Прочее',
+                    'items' => [
+                        ['label' => 'Новости', 'url' => ['/']],
+                        ['label' => 'Электронные образовательные ресурсы', 'url' => ['/#']],
+                        ['label' => 'Общественное управление', 'url' => ['/#']],
                         ['label' => 'Государственная итоговая аттестация (ГИА)', 'url' => ['/#']],
                         ['label' => 'Центр профориентацинной работы', 'url' => ['/#']],
                         ['label' => 'Электронный журнал', 'url' => 'https://krd.rso23.ru/'],
                         ['label' => 'Информационная безопасность', 'url' => ['/#']],
-                        ['label' => 'Наш профсоюз', 'url' => ['/#']],
-                        ['label' => 'Карта сайта', 'url' => ['/#']],
                         ['label' => 'ГТО', 'url' => ['/#']],
                         ['label' => 'Антикоррупция', 'url' => ['/#']],
                         ['label' => 'Отчет о результатах самообследования', 'url' => ['/#']],
@@ -83,6 +120,7 @@ AppAsset::register($this);
                     ],
                     'visible' => !Yii::$app->user->isGuest
                 ],
+                ['label' => 'Админ панель', 'url' => ['/admin/'], 'visible' => Yii::$app->user->can('admin')],
 
             ],
         ]);

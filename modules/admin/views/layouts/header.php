@@ -7,9 +7,16 @@ use yii\helpers\Html;
 
 <header class="main-header">
 
-    <?= Html::a('<span class="logo-mini">APP</span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
+    <?= Html::a('<span class="logo-mini">APP</span><span class="logo-lg">Гимназия №3</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
 
     <nav class="navbar navbar-static-top" role="navigation">
+
+        <div class="hidden-md hidden-lg hidden-sm">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+        </div>
+
 
         <div class="navbar-custom-menu">
 
@@ -23,9 +30,7 @@ use yii\helpers\Html;
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= Yii::$app->user->identity->getBehavior('coverBehavior')->getUrl('medium'); ?>" class="img-circle"
-                                 alt="User Image"/>
-
+                            <img src="<?= Yii::$app->user->identity->getBehavior('coverBehavior')->getUrl('medium'); ?>" class="img-circle"/>
                             <p>
                                 <?= Yii::$app->user->identity->username ?>
                             </p>
