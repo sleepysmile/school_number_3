@@ -5,23 +5,21 @@ namespace app\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\web\UploadedFile;
 
 /**
- * This is the model class for table "reception".
+ * This is the model class for table "deve_prog".
  *
  * @property int $id
- * @property string $file
  * @property string $text
  */
-class Reception extends \yii\db\ActiveRecord
+class DeveProg extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'reception';
+        return 'deve_prog';
     }
 
     /**
@@ -32,11 +30,6 @@ class Reception extends \yii\db\ActiveRecord
         return [
             [['text'], 'string'],
         ];
-    }
-
-    public function getFiles()
-    {
-        return $this->hasMany(ImageManager::class, ['item_id' => 'id'])->andWhere(['class' => self::tableName()]);
     }
 
     /**
@@ -51,9 +44,14 @@ class Reception extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getFiles()
+    {
+        $array = explode('\\', __CLASS__);
+        return $this->hasMany(ImageManager::class, ['item_id' => 'id'])->andWhere(['class' => $array[count($array) - 1]]);
+    }
+
     public function getFilesLinks()
     {
-        if (!empty($this->files)) {
 
             $array = [];
 
@@ -62,22 +60,18 @@ class Reception extends \yii\db\ActiveRecord
             }
             return $array;
 //        ArrayHelper::getColumn($this->files, 'fileUrl')
-        }
 
-        return null;
     }
 
     public function getFilesLinksData()
     {
-        if (!empty($this->files)) {
+
             return ArrayHelper::toArray($this->files, [
                 ImageManager::class => [
                     'caption' => 'fileUrl',
                     'key' => 'id'
                 ]
             ]);
-        }
-        return null;
     }
 
     public static function Res()

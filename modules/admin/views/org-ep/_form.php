@@ -1,6 +1,5 @@
 <?php
 
-use app\models\ImageManager;
 use app\models\Reception;
 use kartik\file\FileInput;
 use yii\helpers\Html;
@@ -8,27 +7,28 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Reception */
+/* @var $model app\models\OrgEp */
 /* @var $form yii\widgets\ActiveForm */
-
-
 ?>
 
-<div class="reception-form">
+<div class="org-ep-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
     <?php
-        if ($model->isNewRecord) {
-            if (Reception::find()->orderBy('id DESC')->one() === null) {
-                $id = 1;
-            } else {
-                $id = (int)(Reception::find()->orderBy('id DESC')->one())->id + 1;
-            }
+    if ($model->isNewRecord) {
+        if (Reception::find()->orderBy('id DESC')->one() === null) {
+            $id = 1;
         } else {
-            $id = $model->id;
+            $id = (int)(Reception::find()->orderBy('id DESC')->one())->id + 1;
         }
+    } else {
+        $id = $model->id;
+    }
 
     ?>
+
+
     <?= FileInput::widget([
         'name' => 'file',
         'options' => [
@@ -49,15 +49,16 @@ use yii\widgets\ActiveForm;
         ]
     ]); ?>
 
+
     <?php if (!empty($model->files)) : ?>
 
-    <div class="form-group">
-        <h3>Ссылки на файлы</h3>
-        <?php foreach ($model->files as $one) :?>
+        <div class="form-group">
+            <h3>Ссылки на файлы</h3>
+            <?php foreach ($model->files as $one) :?>
 
-            <h3><?= $one->fileUrl ?></h3>
-        <?php endforeach; ?>
-    </div>
+                <h3><?= $one->fileUrl ?></h3>
+            <?php endforeach; ?>
+        </div>
 
     <?php endif; ?>
 
@@ -79,7 +80,5 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?php ActiveForm::end(); ?>
-
-
 
 </div>

@@ -68,6 +68,30 @@ use yii\widgets\Menu;
                             'url' => ['union/update', 'id' => 1],
                         ],
                         [
+                            'label' => 'Программа развития',
+                            'url' => ['deve-prog/update', 'id' => 1],
+                        ],
+                        [
+                            'label' => 'Организация УВ',
+                            'url' => ['org-ep/update', 'id' => 1],
+                        ],
+                        [
+                            'label' => 'Воспитательная работа',
+                            'url' => ['educational-work/update', 'id' => 1],
+                        ],
+                        [
+                            'label' => 'Информационная безопасность',
+                            'url' => ['infob/update', 'id' => 1],
+                        ],
+                        [
+                            'label' => 'Антикоррупция',
+                            'url' => ['anti-corruption/update', 'id' => 1],
+                        ],
+                        [
+                            'label' => 'Самообследование',
+                            'url' => ['self-examination/update', 'id' => 1],
+                        ],
+                        [
                             'label' => 'Расписание',
                             'url' => ['schedule/index'],
                         ],
