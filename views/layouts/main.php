@@ -78,6 +78,7 @@ AppAsset::register($this);
                         ['label' => 'Организация учебно-воспитательного процесса', 'url' => ['/org-ep/index']],
                         ['label' => 'Воспитательная работа', 'url' => ['/educational-work/index']],
                         ['label' => 'Наш профсоюз', 'url' => ['/union/index']],
+                        ['label' => 'Структура и органы управления образовательной организацией', 'url' => ['/governing-bodies/index']],
                     ],
                 ],
                 [

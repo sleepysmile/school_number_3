@@ -92,6 +92,10 @@ use yii\widgets\Menu;
                             'url' => ['self-examination/update', 'id' => 1],
                         ],
                         [
+                            'label' => 'Органы управления',
+                            'url' => ['governing-bodies/update', 'id' => 1],
+                        ],
+                        [
                             'label' => 'Расписание',
                             'url' => ['schedule/index'],
                         ],

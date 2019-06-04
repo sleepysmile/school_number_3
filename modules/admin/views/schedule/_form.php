@@ -13,14 +13,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'day')->widget(
-        \kartik\select2\Select2::class,
-        [
-            'data' => \app\models\Schedule::DAY,
-            'options' => ['placeholder' => 'Выбирите день недели']
-        ]
-    ) ?>
-
     <?= $form->field($model, 'teacher')->widget(
         \kartik\select2\Select2::class,
         [

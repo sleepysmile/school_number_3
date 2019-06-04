@@ -21,7 +21,6 @@ Yii::$app->formatter->locale = 'ru-RU';
                         <div class="columns">
                             <div class="block-lesson">
                                 <div class="lesson">Урок</div>
-                                <div class="lesson">День недели</div>
                                 <div class="lesson">Класс</div>
                                 <div class="lesson">№ урока</div>
                                 <div class="lesson">Дата</div>
@@ -32,7 +31,6 @@ Yii::$app->formatter->locale = 'ru-RU';
 
                                 <div class="block-lesson" style="background-color: greenyellow">
                                     <div class="lesson"><?= $model->lesson ?></div>
-                                    <div class="lesson"><?= $model->getDay() ?></div>
                                     <div class="lesson"><?= $model->getClass() ?></div>
                                     <div class="lesson"><?= $model->getLesson() ?></div>
                                     <div class="lesson"><?= Yii::$app->formatter->asDate($model->date) ?></div>
@@ -42,7 +40,6 @@ Yii::$app->formatter->locale = 'ru-RU';
 
                                     <div class="block-lesson">
                                         <div class="lesson"><?= $model->lesson ?></div>
-                                        <div class="lesson"><?= $model->getDay() ?></div>
                                         <div class="lesson"><?= $model->getClass() ?></div>
                                         <div class="lesson"><?= $model->getLesson() ?></div>
                                         <div class="lesson"><?= Yii::$app->formatter->asDate($model->date) ?></div>

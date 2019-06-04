@@ -93,7 +93,7 @@ class Schedule extends \yii\db\ActiveRecord
         return [
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'number'], 'integer'],
             [['date'], 'safe'],
-            [['day', 'teacher', 'lesson', 'class', 'letter'], 'string'],
+            [['teacher', 'lesson', 'class', 'letter'], 'string'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['updated_by' => 'id']],
         ];
@@ -105,7 +105,6 @@ class Schedule extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'day' => 'День недели',
             'teacher' => 'Учитель',
             'lesson' => 'Урок',
             'class' => 'Класс',
@@ -129,11 +128,6 @@ class Schedule extends \yii\db\ActiveRecord
     public function getUpdatedBy()
     {
         return $this->hasOne(User::class, ['id' => 'updated_by']);
-    }
-
-    public function getDay()
-    {
-        return static::DAY[$this->day];
     }
 
     public function getClass()

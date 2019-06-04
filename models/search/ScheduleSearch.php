@@ -17,7 +17,7 @@ class ScheduleSearch extends Schedule
     public function rules()
     {
         return [
-            [['id', 'day', 'teacher', 'lesson', 'class'], 'string'],
+            [['id', 'teacher', 'lesson', 'class'], 'string'],
         ];
     }
 
@@ -58,7 +58,6 @@ class ScheduleSearch extends Schedule
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'day' => $this->day,
             'teacher' => $this->teacher,
             'lesson' => $this->lesson,
             'class' => $this->class,
