@@ -46,23 +46,6 @@ class UserController extends Controller
         ];
     }
 
-    public function actionClass() {
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $out = [];
-        if (isset($_POST['depdrop_parents'])) {
-            $parents = $_POST['depdrop_parents'];
-            if ($parents != null) {
-                $classes_id = $parents[0];
-                if ($classes_id === 'parent') {
-                    $out = ParentToClass::LETTER;
-                    return ['output' => $out, 'selected' => ''];
-                }
-            }
-
-            return ['output' => '', 'selected' => ''];
-        }
-    }
-
     /**
      * Lists all User models.
      * @return mixed

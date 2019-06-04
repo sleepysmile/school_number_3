@@ -35,6 +35,27 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 1;
 
+    public const CLASSES = [
+        1 => 1,
+        2 => 2,
+        3 => 3,
+        4 => 4,
+        5 => 5,
+        6 => 6,
+        7 => 7,
+        8 => 8,
+        9 => 9,
+        10 => 10,
+        11 => 11,
+    ];
+
+    public const LETTER = [
+        'А' => 'А',
+        'Б' => 'Б',
+        'В' => 'В',
+        'Г' => 'Г',
+    ];
+
     public const STATUS = [
         1 => 'Активный',
         0 => 'Удаленный'
@@ -98,7 +119,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            [['username'], 'string'],
+            [['username', 'classes', 'letter'], 'string'],
         ];
     }
 
@@ -131,21 +152,6 @@ class User extends ActiveRecord implements IdentityInterface
     public function getAuth()
     {
         return $this->hasOne(AuthAssignment::class, ['user_id' => 'id']);
-    }
-
-    public function getClasses()
-    {
-        return $this->hasOne(ParentToClass::class, ['user_id' => 'id']);
-    }
-
-    public function getLetter()
-    {
-        if (!empty($this->classes)) {
-
-            return $this->classes->letter;
-        }
-
-        return null;
     }
 
     /**

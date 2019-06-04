@@ -41,7 +41,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'classes')->widget(
         \kartik\select2\Select2::class,
         [
-            'data' => \app\models\ParentToClass::CLASSES,
+            'data' => \app\models\User::CLASSES,
             'options' => [
                 'placeholder' => 'Выберите класс ребёнка родителя',
             ]
@@ -51,7 +51,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'letter')->widget(
         \kartik\select2\Select2::class,
         [
-            'data' => \app\models\ParentToClass::LETTER,
+            'data' => \app\models\User::LETTER,
             'options' => [
                 'placeholder' => 'Выберите букву ребёнка родителя',
             ]
