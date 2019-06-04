@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\ImageManager;
 use app\models\News;
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
@@ -9,12 +10,14 @@ use app\models\SignupForm;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
+use yii\helpers\FileHelper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\web\UploadedFile;
 
 class SiteController extends Controller
 {
@@ -29,7 +32,7 @@ class SiteController extends Controller
                 'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'save-file'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -204,6 +207,71 @@ class SiteController extends Controller
     public function actionSiteMap()
     {
         return $this->render('site-map');
+    }
+
+    public function actionSaveFile()
+    {
+        $this->enableCsrfValidation = false;
+        if (Yii::$app->request->isPost) {
+            $post = Yii::$app->request->post();
+            $dir = Yii::getAlias('@app') . '/web/file/' . $post['class'] . '/';
+
+            if (!file_exists($dir)) {
+                FileHelper::createDirectory($dir);
+            }
+            $result_link = str_replace('admin', '', \yii\helpers\Url::home(true)).'uploads/images/'.$post['class'].'/';
+
+
+            $file = UploadedFile::getInstanceByName('file[0]');
+            $model = new ImageManager();
+            $model->name = Yii::$app->security->generateRandomString(6) . '.' . $file->extension;
+            $arr = [
+                'ImageManager' => [
+                    'class' => $post['class'],
+                    'item_id' => $post['item_id']]
+            ];
+
+            $model->load($arr);
+            $model->validate();
+            if ($model->hasErrors()) {
+                $result = [
+                    'error' => $model->getFirstError('file')
+                ];
+            } else {
+                if ($file->saveAs($dir . $model->name)) {
+                    $result = [
+                        'filelink' => $result_link . $model->name,
+                        'filename' => $model->name,
+                    ];
+                } else {
+                    $result = [
+                        'error' => $model->getFirstError('file')
+                    ];
+                }
+
+                $model->save();
+            }
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            return $result;
+        } else {
+            throw new BadRequestHttpException('Only POST is Allowed');
+        }
+    }
+
+    public function actionDeleteFile()
+    {
+        if ($model = ImageManager::findOne(Yii::$app->request->post('key'))) {
+            $path = glob($model->fileLink);
+//            var_dump($path);
+//            if (file_exists($model->fileLink)) {
+//                unlink($model->fileLink);
+//            }
+            $model->delete();
+            return true;
+        }
+
+        return false;
     }
     
 }

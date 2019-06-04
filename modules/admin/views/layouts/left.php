@@ -44,6 +44,10 @@ use yii\widgets\Menu;
                             'url' => ['teacher/index'],
                         ],
                         [
+                            'label' => 'Прием в ОО',
+                            'url' => ['reception/update', 'id' => 1],
+                        ],
+                        [
                             'label' => 'Символика школы',
                             'url' => ['simbol-of-school/update', 'id' => 1],
                         ],

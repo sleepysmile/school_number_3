@@ -30,7 +30,8 @@
         "yii2mod/yii2-comments": "*",
         "moonlandsoft/yii2-phpexcel": "*",
         "kartik-v/yii2-widget-depdrop": "@dev",
-        "grozzzny/depends": "dev-master"
+        "grozzzny/depends": "dev-master",
+        "kartik-v/yii2-widget-fileinput": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
