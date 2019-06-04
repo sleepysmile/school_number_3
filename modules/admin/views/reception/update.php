@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Reception */
 
-$this->title = 'Изменить Прием в ОО: ' . $model->id;
+$this->title = 'Изменить Прием в ОО';
 $this->params['breadcrumbs'][] = ['label' => 'Прием в ОО', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'изменить';
 ?>

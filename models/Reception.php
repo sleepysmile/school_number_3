@@ -53,7 +53,6 @@ class Reception extends \yii\db\ActiveRecord
 
     public function getFilesLinks()
     {
-        if (!empty($this->files)) {
 
             $array = [];
 
@@ -62,22 +61,17 @@ class Reception extends \yii\db\ActiveRecord
             }
             return $array;
 //        ArrayHelper::getColumn($this->files, 'fileUrl')
-        }
 
-        return null;
     }
 
     public function getFilesLinksData()
     {
-        if (!empty($this->files)) {
             return ArrayHelper::toArray($this->files, [
                 ImageManager::class => [
                     'caption' => 'fileUrl',
                     'key' => 'id'
                 ]
             ]);
-        }
-        return null;
     }
 
     public static function Res()
