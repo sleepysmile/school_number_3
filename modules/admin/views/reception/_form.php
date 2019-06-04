@@ -53,6 +53,7 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?php foreach ($model->files as $one) :?>
+            <h3>Ссылки на файлы</h3>
             <h3><?= $one->fileUrl ?></h3>
         <?php endforeach; ?>
     </div>
@@ -73,7 +74,7 @@ use yii\widgets\ActiveForm;
     ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

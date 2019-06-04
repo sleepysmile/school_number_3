@@ -224,7 +224,7 @@ class SiteController extends Controller
 
             $file = UploadedFile::getInstanceByName('file[0]');
             $model = new ImageManager();
-            $model->name = Yii::$app->security->generateRandomString(6) . '.' . $file->extension;
+            $model->name = $file->name;
             $arr = [
                 'ImageManager' => [
                     'class' => $post['class'],

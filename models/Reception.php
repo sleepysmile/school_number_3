@@ -71,4 +71,9 @@ class Reception extends \yii\db\ActiveRecord
             ]
         ]);
     }
+
+    public static function Res()
+    {
+        return static::findOne(['id' => 1]);
+    }
 }
