@@ -95,7 +95,7 @@ AppAsset::register($this);
                     ],
                 ],
                 ['label' => 'Преподовательский состав', 'url' => ['/teacher/index']],
-                ['label' => 'Контакт', 'url' => ['/site/contact']],
+                ['label' => 'Контакты', 'url' => ['/site/contact']],
                 ['label' => 'Карта сайта', 'url' => ['site/site-map']],
                 ['label' => 'Вход', 'url' => ['/site/login'], 'visible' => Yii::$app->user->isGuest],
                 ['label' => 'Регистрация', 'url' => ['/site/signup'], 'visible' => Yii::$app->user->isGuest],

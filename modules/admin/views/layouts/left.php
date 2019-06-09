@@ -103,6 +103,10 @@ use yii\widgets\Menu;
                             'label' => 'Модерация комментариев',
                             'url' => ['comment/index'],
                         ],
+                        [
+                            'label' => 'Отзывы',
+                            'url' => ['contact-form/index'],
+                        ],
                     ],
                 ]
             );

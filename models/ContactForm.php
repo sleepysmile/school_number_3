@@ -4,17 +4,19 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
+use yii\db\ActiveRecord;
 
 /**
  * ContactForm is the model behind the contact form.
  */
-class ContactForm extends Model
+class ContactForm extends ActiveRecord
 {
-    public $name;
-    public $email;
-    public $body;
     public $verifyCode;
 
+    public static function tableName()
+    {
+        return 'contact_form';
+    }
 
     /**
      * @return array the validation rules.
