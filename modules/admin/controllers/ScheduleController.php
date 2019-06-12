@@ -8,6 +8,7 @@ use app\modules\admin\model\ImportForm;
 use Yii;
 use app\models\Schedule;
 use app\models\search\ScheduleSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\MethodNotAllowedHttpException;
 use yii\web\NotFoundHttpException;
@@ -54,21 +55,20 @@ class ScheduleController extends Controller
                 'class' => 'alert-danger',
             ];
         } else {
-            $data = $model->parse();
-            ScheduleDto::loadFromExcel($data);
+            $data = $model->import();
 
-            if (!empty($data)) {
+            if ($data == true) {
                 $message['text'] = 'Данные успешно импортированы';
                 $message['class'] = 'alert-success';
             }
 
         }
 
+
         Yii::$app->getSession()->setFlash('alert', [
             'body' => $message['text'],
-            'options' => ['class' => $message['class']],
+            'options' => $message['class'],
         ]);
-
         return Yii::$app->controller->redirect(['schedule/index']);
     }
 

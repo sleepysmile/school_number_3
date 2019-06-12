@@ -11,6 +11,13 @@ use yii\widgets\ActiveForm;
 
 <div class="schedule-form">
 
+    <?php if( Yii::$app->session->hasFlash('alert') ): ?>
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <?php echo Yii::$app->session->body(); ?>
+        </div>
+    <?php endif;?>
+
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'teacher')->widget(
@@ -52,13 +59,6 @@ use yii\widgets\ActiveForm;
             'options' => ['placeholder' => 'Выбирите букву класса']
         ]
     ) ?>
-
-    <?= $form->field($model, 'date')->widget(
-        \trntv\yii\datetime\DateTimeWidget::class,
-        [
-            'momentDatetimeFormat' => 'YYYY-MM-DD',
-        ])
-    ?>
 
     <?= $form->field($model, 'date')->input('date')
     ?>

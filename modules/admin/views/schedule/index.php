@@ -16,6 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?php if( Yii::$app->session->hasFlash('alert') ): ?>
+        <div class="alert <?= Yii::$app->getSession()->getFlash('alert')['options'] ?> alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <?php echo Yii::$app->getSession()->getFlash('alert')['body']; ?>
+        </div>
+    <?php endif;?>
+
     <p>
         <?= Html::a(Yii::t('app', 'Создание расписания'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
