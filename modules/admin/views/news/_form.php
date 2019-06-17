@@ -1,6 +1,9 @@
 <?php
 
+use app\models\Reception;
+use kartik\file\FileInput;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use zxbodya\yii2\galleryManager\GalleryManager;
 
@@ -12,6 +15,53 @@ use zxbodya\yii2\galleryManager\GalleryManager;
 <div class="news-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <?php
+    if ($model->isNewRecord) {
+        if (\app\models\News::find()->orderBy('id DESC')->one() === null) {
+            $id = 1;
+        } else {
+            $id = (int)(\app\models\News::find()->orderBy('id DESC')->one())->id + 1;
+        }
+    } else {
+        $id = $model->id;
+    }
+
+    ?>
+
+
+    <?= FileInput::widget([
+        'name' => 'file',
+        'options' => [
+            'multiple' => true
+        ],
+        'pluginOptions' => [
+            'deleteUrl' => Url::toRoute(['/site/delete-file']),
+            'initialPreview' =>  $model->filesLinks,
+            'initialPreviewAsDate' => true,
+            'overwriteInitial' => false,
+            'initialPreviewConfig' => $model->filesLinksData,
+            'uploadUrl' => Url::to(['/site/save-file']),
+            'uploadExtraData' => [
+                'class' => $model->formName(),
+                'item_id' => $id,
+            ],
+            'maxFileCount' => 10
+        ]
+    ]); ?>
+
+
+    <?php if (!empty($model->files)) : ?>
+
+        <div class="form-group">
+            <h3>Ссылки на файлы</h3>
+            <?php foreach ($model->files as $one) :?>
+
+                <h3><?= $one->fileUrl ?></h3>
+            <?php endforeach; ?>
+        </div>
+
+    <?php endif; ?>
 
     <?php try {
         echo GalleryManager::widget(

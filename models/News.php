@@ -9,6 +9,8 @@ use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use zxbodya\yii2\galleryManager\GalleryBehavior;
 
 /**
@@ -143,6 +145,36 @@ class News extends \yii\db\ActiveRecord
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getFiles()
+    {
+        $array = explode('\\', __CLASS__);
+        return $this->hasMany(ImageManager::class, ['item_id' => 'id'])->andWhere(['class' => $array[count($array) - 1]]);
+    }
+
+    public function getFilesLinks()
+    {
+
+        $array = [];
+
+        foreach ($this->files as $item) {
+            array_push($array, Html::img($item->fileUrl, ['class' => 'file-preview-image kv-preview-data']));;
+        }
+        return $array;
+//        ArrayHelper::getColumn($this->files, 'fileUrl')
+
+    }
+
+    public function getFilesLinksData()
+    {
+
+        return ArrayHelper::toArray($this->files, [
+            ImageManager::class => [
+                'caption' => 'fileUrl',
+                'key' => 'id'
+            ]
+        ]);
     }
 
     /**

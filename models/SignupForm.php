@@ -58,7 +58,7 @@ class SignupForm extends Model
     /**
      * Signs user up.
      *
-     * @return bool
+     * @return User|null
      * @throws \yii\base\Exception
      */
     public function signup()
@@ -77,8 +77,9 @@ class SignupForm extends Model
         $user->status = $this->status ?: 0;
 
         $user->save();
+        $user->getAuthAssignment($this->role ?: 'user', $user->id);
 
-        return  $user->getAuthAssignment($this->role ?: 'user', $user->id);
+        return  $user;
     }
 
     /**

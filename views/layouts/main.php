@@ -69,7 +69,7 @@ AppAsset::register($this);
             'options' => ['class' => 'navbar-nav'],
             'items' => [
                 [
-                    'label' => 'Сведенья о школе',
+                    'label' => 'Сведения о школе',
                     'items' => [
                         ['label' => 'Сведения об образовательной организации', 'url' => ['/about/index']],
                         ['label' => 'Символика школы', 'url' => ['/simbol-of-school/index']],
@@ -103,7 +103,7 @@ AppAsset::register($this);
                     'label' => 'Аккаунт',
                     'items' => [
                         ['label' => 'Настройки аккаунта', 'url' => ['user/user-settings']],
-                        ['label' => 'Личный кабинет', 'url' => ['/personal-area/index'], 'visible' => (Yii::$app->user->can('teacher') || Yii::$app->user->can('parent'))],
+                        ['label' => 'Расписание', 'url' => ['/personal-area/index'], 'visible' => (Yii::$app->user->can('teacher') || Yii::$app->user->can('parent'))],
                         (
                             '<li>'
                             . Html::a("Выход", ['/site/logout'], [
